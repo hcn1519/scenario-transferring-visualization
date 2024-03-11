@@ -13,11 +13,16 @@
     <div id="graph"></div>
 
     <script>
-        // Get the DOT source from Flask
-        const dotSource = 'digraph { A -> B; }';
+        fetch("sample.dot")
+            .then((res) => res.text())
+            .then((text) => {
+                // Get the DOT source from Flask
+                const dotSource = text;
+                // Render the graph using d3-graphviz
+                d3.select('#graph').graphviz().renderDot(dotSource);
+            })
+            .catch((e) => console.error(e));
 
-        // Render the graph using d3-graphviz
-        d3.select('#graph').graphviz().renderDot(dotSource);
     </script>
 </body>
 

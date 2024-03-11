@@ -1,0 +1,140 @@
+digraph ScenarioGraph {
+    Scenario [label="Scenario"]
+    ScenarioModifiers [label="ScenarioModifiers"]
+    Scenario -> ScenarioModifiers
+
+    OpenSCENARIO [label="OpenSCENARIO"]
+    FileHeader [label="FileHeader"]
+    CatalogLocations [label="CatalogLocations"]
+    RoadNetwork [label="RoadNetwork"]
+    Scenario -> OpenSCENARIO
+    OpenSCENARIO -> FileHeader
+    OpenSCENARIO -> CatalogLocations
+    OpenSCENARIO -> RoadNetwork
+
+    revMajor [label="revMajor\n1"]
+    revMinor [label="revMinor\n1"]
+    date [label="date\n2024-03-11T02:51:16"]
+    description [label="description\nDefault FileHeader"]
+    author [label="author\nADS Scenario Tranferrer"]
+    FileHeader -> revMajor
+    FileHeader -> revMinor
+    FileHeader -> date
+    FileHeader -> description
+    FileHeader -> author
+
+    LogicFile [label="LogicFile"]
+    SceneGraphFile [label="SceneGraphFile"]
+    TrafficSignals [label="TrafficSignals"]
+    RoadNetwork -> LogicFile
+    RoadNetwork -> SceneGraphFile
+    RoadNetwork -> TrafficSignals
+
+    filepath_LF [label="filepath\n/home/user/lanelet_map.osm"]
+    filepath_SGF [label="filepath\npoint_cloud.pcd"]
+    LogicFile -> filepath_LF
+    SceneGraphFile -> filepath_SGF
+
+    TrafficSignalController [label="TrafficSignalController"]
+    TrafficSignals -> TrafficSignalController
+
+    Entities [label="Entities"]
+    ScenarioObject_0 [label="ScenarioObject"]
+    ScenarioObject_1 [label="ScenarioObject"]
+    OpenSCENARIO -> Entities
+    Entities -> ScenarioObject_0
+    Entities -> ScenarioObject_1
+
+    name_SO_0 [label="name\ndego"]
+    Vehicle_SO_0 [label="Vehicle"]
+    BoundingBox_SO_0 [label="BoundingBox"]
+    Center_SO_0 [label="Center"]
+    Dimensions_SO_0 [label="Dimensions"]
+    height_SO_0 [label="height\n2.5"]
+    length_SO_0 [label="length\n4.77"]
+    width_SO_0 [label="width\n1.83"]
+    Performance_SO_0 [label="Performance"]
+    maxAcceleration_SO_0 [label="maxAcceleration\ninf"]
+    maxDeceleration_SO_0 [label="maxDeceleration\ninf"]
+    maxSpeed_SO_0 [label="maxSpeed\n50.0"]
+    Axles_SO_0 [label="Axles"]
+    Axle_SO_0 [label="Axle"]
+    maxSteering_SO_0 [label="maxSteering\n0.5236"]
+    positionX_SO_0 [label="positionX\n0.0"]
+    positionZ_SO_0 [label="positionZ\n0.39"]
+    trackWidth_SO_0 [label="trackWidth\n1.63"]
+    wheelDiameter_SO_0 [label="wheelDiameter\n0.78"]
+    Properties_SO_0 [label="Properties"]
+    Property_SO_0 [label="Property"]
+    ObjectController_SO_0 [label="ObjectController"]
+    Controller_SO_0 [label="Controller"]
+    name_Controller_SO_0 [label="name\n"]
+    Properties_Controller_SO_0 [label="Properties"]
+    Property_Controller_SO_0 [label="Property"]
+    name_Property_SO_0 [label="name\nisEgo"]
+    value_Property_SO_0 [label="value\ntrue"]
+    ScenarioObject_0 -> name_SO_0
+    ScenarioObject_0 -> Vehicle_SO_0
+    Vehicle_SO_0 -> name_Controller_SO_0
+    Vehicle_SO_0 -> vehicleCategory_Controller_SO_0
+    Vehicle_SO_0 -> BoundingBox_SO_0
+    Vehicle_SO_0 -> Performance_SO_0
+    Vehicle_SO_0 -> Axles_SO_0
+    Vehicle_SO_0 -> Properties_SO_0
+    BoundingBox_SO_0 -> Center_SO_0
+    BoundingBox_SO_0 -> Dimensions_SO_0
+    Center_SO_0 -> x_Center_SO_0
+    Center_SO_0 -> y_Center_SO_0
+    Center_SO_0 -> z_Center_SO_0
+    Dimensions_SO_0 -> height_SO_0
+    Dimensions_SO_0 -> length_SO_0
+    Dimensions_SO_0 -> width_SO_0
+    Performance_SO_0 -> maxAcceleration_SO_0
+    Performance_SO_0 -> maxDeceleration_SO_0
+    Performance_SO_0 -> maxSpeed_SO_0
+    Axles_SO_0 -> Axle_SO_0
+    Axle_SO_0 -> maxSteering_SO_0
+    Axle_SO_0 -> positionX_SO_0
+    Axle_SO_0 -> positionZ_SO_0
+    Axle_SO_0 -> trackWidth_SO_0
+    Axle_SO_0 -> wheelDiameter_SO_0
+    Properties_SO_0 -> Property_SO_0
+    ObjectController_SO_0 -> Controller_SO_0
+    Controller_SO_0 -> name_Controller_SO_0
+    Controller_SO_0 -> Properties_Controller_SO_0
+    Properties_Controller_SO_0 -> Property_Controller_SO_0
+    Property_Controller_SO_0 -> name_Property_SO_0
+    Property_Controller_SO_0 -> value_Property_SO_0
+
+    name_SO_1 [label="name\nnpc_1"]
+    Vehicle_SO_1 [label="Vehicle"]
+    BoundingBox_SO_1 [label="BoundingBox"]
+    Center_SO_1 [label="Center"]
+    Dimensions_SO_1 [label="Dimensions"]
+    height_SO_1 [label="height\n2.5"]
+    length_SO_1 [label="length\n4.0"]
+    width_SO_1 [label="width\n1.8"]
+    Performance_SO_1 [label="Performance"]
+    maxAcceleration_SO_1 [label="maxAcceleration\ninf"]
+    maxDeceleration_SO_1 [label="maxDeceleration\ninf"]
+    maxSpeed_SO_1 [label="maxSpeed\n50.0"]
+    Axles_SO_1 [label="Axles"]
+    Axle_SO_1 [label="Axle"]
+    maxSteering_SO_1 [label="maxSteering\n0.5236"]
+    positionX_SO_1 [label="positionX\n0.0"]
+    positionZ_SO_1 [label="positionZ\n0.3"]
+    trackWidth_SO_1 [label="trackWidth\n1.8"]
+    wheelDiameter_SO_1 [label="wheelDiameter\n0.6"]
+    Properties_SO_1 [label="Properties"]
+    Property_SO_1 [label="Property"]
+    ObjectController_SO_1 [label="ObjectController"]
+    Controller_SO_1 [label="Controller"]
+    name_Controller_SO_1 [label="name\n"]
+    Properties_Controller_SO_1 [label="Properties"]
+    Property_Controller_SO_1 [label="Property"]
+    ScenarioObject_1 -> name_SO_1
+    ScenarioObject_1 -> Vehicle_SO_1
+    Vehicle_SO_1 -> name_Controller_SO_1
+    Vehicle_SO_1 -> vehicleCategory_Controller_SO_1
+   
+}

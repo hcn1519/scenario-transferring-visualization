@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flask + D3.js Example</title>
+    <!-- Load D3.js from a CDN -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="{{ url_for('static', filename='d3-graphviz.min.js') }}"></script>
+</head>
+
+<body>
+    <div id="graph"></div>
+
+    <script>
+        // Get the DOT source from Flask
+        const dotSource = 'digraph { A -> B; }';
+
+        // Render the graph using d3-graphviz
+        d3.select('#graph').graphviz().renderDot(dotSource);
+    </script>
+</body>
+
+</html>

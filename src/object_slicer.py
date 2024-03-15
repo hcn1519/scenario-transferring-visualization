@@ -1,14 +1,28 @@
-from typing import List
 import yaml
 import json
 import copy
-from typing import Optional
+from typing import Optional, List, Tuple
+from enum import Enum
+from dataclasses import dataclass
+
+class SamplingOption(Enum):
+    PREFIX = 1
+    SUFFIX = 2
+    HALF = 3
+
 
 class ObjectSlicer:
+    @dataclass
+    class Configuration:
+        root_key_path: Optional[str] # if there are multiple top-level objects, we wrap it using root_key_path and treat it like a tree.
+        separator_keypaths: List[str]
+        max_number_of_elements: Tuple[int, SamplingOption] = (float('inf'), SamplingOption.PREFIX)
 
-    def __init__(self, separator_keypaths: List[str], root_key_path: Optional[str]):
-        self.separator_keypaths = sorted(separator_keypaths, key=lambda x: len(x.split('.')), reverse=True)
-        self.root_key_path = root_key_path # if there are multiple top-level objects, we wrap it using root_key_path and treat it like a tree.
+        def sorted_keypaths(self):
+            return sorted(self.separator_keypaths, key=lambda x: len(x.split('.')), reverse=True)
+
+    def __init__(self, configuration: Configuration):
+        self.configuration = configuration
         self.keypath_set = set()
         self.chunks = []
 
@@ -31,24 +45,44 @@ class ObjectSlicer:
         return self.create_object_chunk(dict=json_data_dict)
 
     def create_object_chunk(self, dict):
-        if self.root_key_path and len(dict.keys()) > 1:
-           dict = { self.root_key_path: dict }
+        if self.configuration.root_key_path and len(dict.keys()) > 1:
+           dict = { self.configuration.root_key_path: dict }
 
         mutable_dict = copy.deepcopy(dict)
         
-        for separator_keypath in self.separator_keypaths:
+        for separator_keypath in self.configuration.sorted_keypaths():
             self.get_value_by_dot_path(data=mutable_dict, dot_path=separator_keypath, original_keypath = separator_keypath)
 
         self.chunks.append(mutable_dict)
         return self.chunks
 
     def get_value_by_dot_path(self, data, dot_path, original_keypath):
+
+        def sampled_list(elements, sampling_option):
+            (maximum_length, option) = sampling_option
+
+            maximum_length = min(maximum_length, len(data))
+
+            if maximum_length == len(elements):
+                return elements
+
+            if option == SamplingOption.PREFIX:
+                return elements[:maximum_length]
+            elif option == SamplingOption.SUFFIX:
+                return elements[-maximum_length:]
+
+            right = maximum_length // 2
+            left = maximum_length - right            
+            return elements[:left] + elements[-right:] 
+
         keys = dot_path.split('.')
 
         if len(keys) > 1:
             new_key = keys[1:]
             if isinstance(data, list):
-                for element in data:
+                objects = sampled_list(elements = data, sampling_option=self.configuration.max_number_of_elements)
+                print("data:", len(data), "obj:", len(objects))
+                for element in objects:
                     self.get_value_by_dot_path(data=element[keys[0]], dot_path=".".join(new_key), original_keypath=original_keypath)
             else:
                 self.get_value_by_dot_path(data=data[keys[0]], dot_path=".".join(new_key), original_keypath=original_keypath)
@@ -59,7 +93,9 @@ class ObjectSlicer:
                 for i, element in enumerate(data):
                     chunk_list.append({target_key: copy.deepcopy(element[target_key])})
                     element[target_key] = f"<<Original Key Path: {original_keypath} {i}>>"
-                self.chunks.append({target_key: chunk_list})
+                
+                sampled_list = sampled_list(elements = chunk_list, sampling_option=self.configuration.max_number_of_elements)
+                self.chunks.append({target_key: sampled_list})
             else:
                 chunk = {target_key: copy.deepcopy(data[target_key])}
                 data[keys[0]] = f"<<Original Key Path: {original_keypath}>>"

@@ -1,0 +1,519 @@
+@startuml
+left to right direction
+
+state "Story" as state_Story {
+  json Story {
+  "Story": [
+    {
+      "name": "",
+      "Act": [
+        {
+          "name": "act_signal_change",
+          "ManeuverGroup": "<<Original Key Path: Story.Act.ManeuverGroup 0>>",
+          "StartTrigger": {
+            "ConditionGroup": [
+              {
+                "Condition": [
+                  {
+                    "name": "",
+                    "delay": 0,
+                    "conditionEdge": "none",
+                    "ByValueCondition": {
+                      "SimulationTimeCondition": {
+                        "value": 0,
+                        "rule": "greaterThan"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "act_ped_start",
+          "ManeuverGroup": "<<Original Key Path: Story.Act.ManeuverGroup 1>>",
+          "StartTrigger": {
+            "ConditionGroup": [
+              {
+                "Condition": [
+                  {
+                    "name": "",
+                    "delay": 0,
+                    "conditionEdge": "none",
+                    "ByValueCondition": {
+                      "SimulationTimeCondition": {
+                        "value": 0,
+                        "rule": "greaterThan"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "act_ped_stop",
+          "ManeuverGroup": "<<Original Key Path: Story.Act.ManeuverGroup 2>>",
+          "StartTrigger": {
+            "ConditionGroup": [
+              {
+                "Condition": [
+                  {
+                    "name": "",
+                    "delay": 0,
+                    "conditionEdge": "none",
+                    "ByValueCondition": {
+                      "StoryboardElementStateCondition": {
+                        "state": "completeState",
+                        "storyboardElementType": "act",
+                        "storyboardElementRef": "act_ped_start"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "act_check_ego_stop_obstacle",
+          "ManeuverGroup": "<<Original Key Path: Story.Act.ManeuverGroup 3>>",
+          "StartTrigger": {
+            "ConditionGroup": [
+              {
+                "Condition": [
+                  {
+                    "name": "",
+                    "delay": 0,
+                    "conditionEdge": "none",
+                    "ByValueCondition": {
+                      "StoryboardElementStateCondition": {
+                        "state": "completeState",
+                        "storyboardElementType": "act",
+                        "storyboardElementRef": "act_ped_start"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "act_check_ego_stopkeep",
+          "ManeuverGroup": "<<Original Key Path: Story.Act.ManeuverGroup 4>>",
+          "StartTrigger": {
+            "ConditionGroup": [
+              {
+                "Condition": [
+                  {
+                    "name": "",
+                    "delay": 0,
+                    "conditionEdge": "none",
+                    "ByValueCondition": {
+                      "StoryboardElementStateCondition": {
+                        "state": "completeState",
+                        "storyboardElementType": "act",
+                        "storyboardElementRef": "act_check_ego_stop_obstacle"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "act_check_ego_spd",
+          "ManeuverGroup": "<<Original Key Path: Story.Act.ManeuverGroup 5>>",
+          "StartTrigger": {
+            "ConditionGroup": [
+              {
+                "Condition": [
+                  {
+                    "name": "",
+                    "delay": 0,
+                    "conditionEdge": "none",
+                    "ByValueCondition": {
+                      "StoryboardElementStateCondition": {
+                        "state": "completeState",
+                        "storyboardElementType": "act",
+                        "storyboardElementRef": "act_check_ego_stop_obstacle"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "_EndCondition",
+          "ManeuverGroup": "<<Original Key Path: Story.Act.ManeuverGroup 6>>",
+          "StartTrigger": {
+            "ConditionGroup": [
+              {
+                "Condition": [
+                  {
+                    "name": "",
+                    "delay": 0,
+                    "conditionEdge": "none",
+                    "ByValueCondition": {
+                      "SimulationTimeCondition": {
+                        "value": 0,
+                        "rule": "greaterThan"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
+
+}
+state "Story.Act.ManeuverGroup" as state_Story_Act_ManeuverGroup {
+  json ManeuverGroup {
+  "ManeuverGroup": [
+    {
+      "ManeuverGroup": [
+        {
+          "maximumExecutionCount": 1,
+          "name": "act_signal_change",
+          "Actors": {
+            "selectTriggeringEntities": false,
+            "EntityRef": [
+              {
+                "entityRef": "ego"
+              }
+            ]
+          },
+          "Maneuver": [
+            {
+              "name": "",
+              "Event": [
+                {
+                  "name": "signal_change",
+                  "priority": "parallel",
+                  "Action": [
+                    {
+                      "name": "",
+                      "GlobalAction": {
+                        "InfrastructureAction": {
+                          "TrafficSignalAction": {
+                            "TrafficSignalControllerAction": {
+                              "trafficSignalControllerRef": "StraghtSignal",
+                              "phase": "GREEN"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "StartTrigger": {
+                    "ConditionGroup": [
+                      {
+                        "Condition": [
+                          {
+                            "name": "",
+                            "delay": 0,
+                            "conditionEdge": "none",
+                            "ByEntityCondition": {
+                              "TriggeringEntities": {
+                                "triggeringEntitiesRule": "any",
+                                "EntityRef": [
+                                  {
+                                    "entityRef": "ego"
+                                  }
+                                ]
+                              },
+                              "EntityCondition": {
+                                "SpeedCondition": {
+                                  "rule": "greaterThan",
+                                  "value": 0.0001
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ManeuverGroup": [
+        {
+          "maximumExecutionCount": 1,
+          "name": "act_ped_start",
+          "Actors": {
+            "selectTriggeringEntities": false,
+            "EntityRef": [
+              {
+                "entityRef": "Pedestrian1"
+              }
+            ]
+          },
+          "Maneuver": [
+            {
+              "name": "",
+              "Event": [
+                {
+                  "name": "ped_start",
+                  "priority": "parallel",
+                  "Action": [
+                    {
+                      "name": "",
+                      "UserDefinedAction": {
+                        "CustomCommandAction": {
+                          "type": "WalkStraightAction"
+                        }
+                      }
+                    },
+                    {
+                      "name": "",
+                      "PrivateAction": {
+                        "LongitudinalAction": {
+                          "SpeedAction": {
+                            "SpeedActionDynamics": {
+                              "dynamicsDimension": "time",
+                              "value": 0,
+                              "dynamicsShape": "step"
+                            },
+                            "SpeedActionTarget": {
+                              "AbsoluteTargetSpeed": {
+                                "value": 0.4167
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "StartTrigger": {
+                    "ConditionGroup": [
+                      {
+                        "Condition": [
+                          {
+                            "name": "",
+                            "delay": 0,
+                            "conditionEdge": "none",
+                            "ByValueCondition": {
+                              "StoryboardElementStateCondition": {
+                                "state": "completeState",
+                                "storyboardElementType": "act",
+                                "storyboardElementRef": "act_signal_change"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ManeuverGroup": [
+        {
+          "maximumExecutionCount": 1,
+          "name": "",
+          "Actors": {
+            "selectTriggeringEntities": false,
+            "EntityRef": [
+              {
+                "entityRef": "ego"
+              }
+            ]
+          },
+          "Maneuver": [
+            {
+              "name": "",
+              "Event": [
+                {
+                  "name": "",
+                  "priority": "parallel",
+                  "StartTrigger": {
+                    "ConditionGroup": [
+                      {
+                        "Condition": [
+                          {
+                            "name": "",
+                            "delay": 0,
+                            "conditionEdge": "none",
+                            "ByEntityCondition": {
+                              "TriggeringEntities": {
+                                "triggeringEntitiesRule": "any",
+                                "EntityRef": [
+                                  {
+                                    "entityRef": "ego"
+                                  }
+                                ]
+                              },
+                              "EntityCondition": {
+                                "ReachPositionCondition": {
+                                  "Position": {
+                                    "LanePosition": {
+                                      "roadId": "",
+                                      "laneId": "12163",
+                                      "s": 525,
+                                      "offset": 0,
+                                      "Orientation": {
+                                        "type": "relative",
+                                        "h": 0,
+                                        "p": 0,
+                                        "r": 0
+                                      }
+                                    }
+                                  },
+                                  "tolerance": 1
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "name": "",
+                            "delay": 0,
+                            "conditionEdge": "none",
+                            "ByValueCondition": {
+                              "StoryboardElementStateCondition": {
+                                "state": "completeState",
+                                "storyboardElementType": "act",
+                                "storyboardElementRef": "act_check_ego_stop_obstacle"
+                              }
+                            }
+                          },
+                          {
+                            "name": "",
+                            "delay": 0,
+                            "conditionEdge": "none",
+                            "ByValueCondition": {
+                              "StoryboardElementStateCondition": {
+                                "state": "completeState",
+                                "storyboardElementType": "act",
+                                "storyboardElementRef": "act_check_ego_stopkeep"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "Action": [
+                    {
+                      "name": "",
+                      "UserDefinedAction": {
+                        "CustomCommandAction": {
+                          "type": "exitSuccess"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "",
+                  "priority": "parallel",
+                  "StartTrigger": {
+                    "ConditionGroup": [
+                      {
+                        "Condition": [
+                          {
+                            "name": "",
+                            "delay": 0,
+                            "conditionEdge": "none",
+                            "ByValueCondition": {
+                              "SimulationTimeCondition": {
+                                "value": 180,
+                                "rule": "greaterThan"
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "Condition": [
+                          {
+                            "name": "",
+                            "delay": 0,
+                            "conditionEdge": "none",
+                            "ByEntityCondition": {
+                              "TriggeringEntities": {
+                                "triggeringEntitiesRule": "any",
+                                "EntityRef": [
+                                  {
+                                    "entityRef": "ego"
+                                  }
+                                ]
+                              },
+                              "EntityCondition": {
+                                "CollisionCondition": {
+                                  "EntityRef": {
+                                    "entityRef": "Pedestrian1"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "Condition": [
+                          {
+                            "name": "",
+                            "delay": 0,
+                            "conditionEdge": "none",
+                            "ByValueCondition": {
+                              "StoryboardElementStateCondition": {
+                                "state": "completeState",
+                                "storyboardElementType": "act",
+                                "storyboardElementRef": "act_check_ego_spd"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "Action": [
+                    {
+                      "name": "",
+                      "UserDefinedAction": {
+                        "CustomCommandAction": {
+                          "type": "exitFailure"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+}
+state_Story --> state_Story_Act_ManeuverGroup
+note on link
+  Story contains Story.Act.ManeuverGroup
+end note
+
+
+@enduml

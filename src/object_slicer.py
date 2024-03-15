@@ -12,17 +12,22 @@ class ObjectSlicer:
         self.keypath_set = set()
         self.chunks = []
 
-    def create_object_chunk_in_yaml(self, file_path: str):
+    def create_object_chunk_in_yaml_file(self, file_path: str):
         with open(file_path, "r") as file:
             yaml_data = file.read()
-
-        dict_from_yaml = yaml.safe_load(yaml_data)
+        return self.create_object_chunk_in_yaml_str(yaml_data)
+        
+    def create_object_chunk_in_yaml_str(self, input_str: str):
+        dict_from_yaml = yaml.safe_load(input_str)
         return self.create_object_chunk(dict=dict_from_yaml)
     
-    def create_object_chunk_in_json(self, file_path: str):
+    def create_object_chunk_in_json_file(self, file_path: str):
         with open(file_path, "r") as file:
-            json_data_dict = json.load(file)
-            
+            json_data = file.read()
+        self.create_object_chunk_in_json_str(input_str=json_data)    
+
+    def create_object_chunk_in_json_str(self, input_str: str):
+        json_data_dict = json.loads(input_str)
         return self.create_object_chunk(dict=json_data_dict)
 
     def create_object_chunk(self, dict):

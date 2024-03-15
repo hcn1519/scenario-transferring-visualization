@@ -11,7 +11,6 @@ class FileType(Enum):
     
 @dataclass
 class Configuration:
-    file_path: str
     file_type: FileType
     root_key_path: Optional[str]
     separators: List[str]
@@ -23,13 +22,12 @@ class PlantUMLImageGenerator:
         self.config = config
         self.slicer = ObjectSlicer(separator_keypaths=config.separators, root_key_path=config.root_key_path)
     
-    def generate_string(self) -> str:
+    def generate_string(self, input_str: str) -> str:
         chunks = []
         if self.config.file_type == FileType.YAML:
-            chunks = self.slicer.create_object_chunk_in_yaml(file_path=self.config.file_path)
+            chunks = self.slicer.create_object_chunk_in_yaml_str(input_str=input_str)
         else:
-            chunks = self.slicer.create_object_chunk_in_json(file_path=self.config.file_path)
-
+            chunks = self.slicer.create_object_chunk_in_json_str(input_str=input_str)
 
         if len(self.config.separators) == 0:
             title = self.config.root_key_path if self.config.root_key_path else list(chunks[0].keys())[0]
@@ -42,8 +40,8 @@ class PlantUMLImageGenerator:
         uml_formatter.draw_composition_relationships()
         return uml_formatter.get_result()
         
-    def generate_image_file(self, uml_file_path: str, max_image_size: int=8192):        
-        gen_str = self.generate_string()
+    def generate_image_file(self, input_str: str, uml_file_path: str, max_image_size: int=8192):        
+        gen_str = self.generate_string(input_str=input_str)
         with open(uml_file_path, "w") as file:
             file.write(gen_str)
 

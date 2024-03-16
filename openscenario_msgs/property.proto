@@ -1,0 +1,21 @@
+syntax = "proto2";
+package openscenario;
+
+import "openscenario_msgs/file.proto";
+
+// Message for Properties
+message Properties {
+    repeated Property properties = 1;          // 0..*
+    repeated File files = 2;                   // 0..*
+}
+
+// Message for Property
+message Property {
+    required string name = 1;            // 1..1
+    required string value = 2;           // 1..1
+}
+
+// Message for CustomContent
+message CustomContent {
+    required string content = 1;         // 1..1
+}

@@ -1,7 +1,8 @@
 
 from dataclasses import dataclass
 from typing import List
-import json 
+import json
+from enum import Enum
 
 @dataclass
 class LabeledDictionary:
@@ -10,6 +11,20 @@ class LabeledDictionary:
 
     def state_name(self) -> str:
         return "state_" + self.title.replace(".", "_")
+
+@dataclass
+class EdgeOption:
+    class EdgeStyle(Enum):
+        BOLD = "bold"
+        DOTTED = "dotted"
+        DASHED = "dashed"
+    
+    hex_color_str: str
+    style: EdgeStyle = EdgeStyle.BOLD
+
+    def edge_option_str(self) -> str:
+        print(self.hex_color_str)
+        return f"[{self.style.value},#{self.hex_color_str}]"
 
 class PlantUMLFormatter:
 
@@ -38,29 +53,27 @@ class PlantUMLFormatter:
             f'}}\n'
         ))
     
-    def add_edge(self, from_node: LabeledDictionary, to_node: LabeledDictionary):
-        res = [f'{from_node.state_name()} --> {to_node.state_name()}\n']
-        res.append(f'note on link\n')
-        res.append(f'  {from_node.title} contains {to_node.title}\n')
-        res.append("end note\n\n")
+    def add_composition_edge(self, from_node: LabeledDictionary, to_node: LabeledDictionary):
+        option = EdgeOption(hex_color_str="000000")
+        notes = [f'  {from_node.title} contains {to_node.title}\n']
+        self.add_edge(from_node=from_node, to_node=to_node, edge_option=option, notes=notes)
+    
+    def add_edge(self, from_node: LabeledDictionary, to_node: LabeledDictionary, edge_option: EdgeOption, notes: List[str]):
+        res = [f'{from_node.state_name()} -{edge_option.edge_option_str()}-> {to_node.state_name()}\n']
+        if notes:
+            res.append(f'note on link\n')
+            for note in notes:
+                res.append(note)
+            res.append("end note\n\n")
         self.edges.append(''.join(res))
 
-    def add_edges(self, from_state: str, to_state: str):
-
-        from_node = next(x for x in self.labeled_dictionaries if x.title == from_state)
-        to_node = next(x for x in self.labeled_dictionaries if x.title == to_state)
-
-        if not from_node or not to_node:
-            return
-        self.add_edge(from_node=from_node, to_node=to_node)
-        
     def draw_composition_relationships(self):
         sorted_labeled_dicts = sorted(self.labeled_dictionaries, key=lambda x: x.title, reverse=True)
 
         for i, cur in enumerate(sorted_labeled_dicts):
             for next in sorted_labeled_dicts[i + 1:]:
                 if next.title in cur.title:
-                    self.add_edge(from_node=next, to_node=cur)
+                    self.add_composition_edge(from_node=next, to_node=cur)
                     break
             
     def get_result(self) -> str:

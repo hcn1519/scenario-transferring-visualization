@@ -1,6 +1,6 @@
 import os
 import pytest
-from src.plant_uml_image_generator import PlantUMLImageGenerator, Configuration, FileType
+from src.plant_uml_image_generator import PlantUMLImageGenerator, Configuration, Format
 from src.object_slicer import ObjectSlicer, SamplingOption
 
 @pytest.fixture(scope='session')
@@ -20,7 +20,7 @@ def test_plant_uml_generator_yaml(project_root):
     ]
     root_key_path="Scenario"
 
-    config = Configuration(file_type = FileType.YAML, 
+    config = Configuration(format_type = Format.YAML, 
                            object_slicer_configuration = ObjectSlicer.Configuration(root_key_path=root_key_path, 
                                                                                     separator_keypaths=separator_keypaths))
     generator = PlantUMLImageGenerator(config=config)
@@ -38,7 +38,7 @@ def test_plant_uml_generator_non_separator(project_root):
     separator_keypaths = []
     root_key_path="Scenario"
 
-    config = Configuration(file_type = FileType.YAML, 
+    config = Configuration(format_type = Format.YAML, 
                            object_slicer_configuration = ObjectSlicer.Configuration(root_key_path=root_key_path, 
                                                                                     separator_keypaths=separator_keypaths))
     
@@ -62,7 +62,7 @@ def test_plant_uml_yaml_image_gen(project_root, tmp_path):
     ]
     root_key_path="Scenario"
     
-    config = Configuration(file_type = FileType.YAML, 
+    config = Configuration(format_type = Format.YAML, 
                            object_slicer_configuration = ObjectSlicer.Configuration(root_key_path=root_key_path, 
                                                                                     separator_keypaths=separator_keypaths))
     generator = PlantUMLImageGenerator(config=config)
@@ -89,7 +89,7 @@ def test_plant_uml_json_image_gen(project_root, tmp_path):
         "Story.Act"
     ]
     
-    config = Configuration(file_type = FileType.JSON, 
+    config = Configuration(format_type = Format.JSON, 
                            object_slicer_configuration = ObjectSlicer.Configuration(root_key_path="Story", 
                                                                                     separator_keypaths=separator_keypaths))
     
@@ -115,11 +115,12 @@ def test_plant_uml_yaml_image_gen_with_maximum_length(project_root, tmp_path):
         "Scenario.OpenSCENARIO.Storyboard",
         "Scenario.OpenSCENARIO.Storyboard.Story",
         "Scenario.OpenSCENARIO.Entities",
+        "Scenario.OpenSCENARIO.Storyboard.Init.Actions.Private",
         "Scenario.OpenSCENARIO.Storyboard.Story.Act.ManeuverGroup",
     ]
     root_key_path="Scenario"
     
-    config = Configuration(file_type = FileType.YAML, 
+    config = Configuration(format_type = Format.YAML, 
                            object_slicer_configuration = ObjectSlicer.Configuration(root_key_path=root_key_path, 
                                                                                     separator_keypaths=separator_keypaths,
                                                                                     max_number_of_elements=(3, SamplingOption.HALF)))

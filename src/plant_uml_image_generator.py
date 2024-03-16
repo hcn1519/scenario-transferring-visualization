@@ -5,13 +5,13 @@ from enum import Enum
 from src.object_slicer import ObjectSlicer
 from src.plant_uml_formatter import PlantUMLFormatter, LabeledDictionary
 
-class FileType(Enum):
+class Format(Enum):
     JSON = 'json'
     YAML = 'yaml'
     
 @dataclass
 class Configuration:
-    file_type: FileType
+    format_type: Format
     object_slicer_configuration: ObjectSlicer.Configuration
 
     def root_key_path(self) -> str:
@@ -29,7 +29,7 @@ class PlantUMLImageGenerator:
     
     def generate_string(self, input_str: str) -> str:
         chunks = []
-        if self.config.file_type == FileType.YAML:
+        if self.config.format_type == Format.YAML:
             chunks = self.slicer.create_object_chunk_in_yaml_str(input_str=input_str)
         else:
             chunks = self.slicer.create_object_chunk_in_json_str(input_str=input_str)

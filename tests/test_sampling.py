@@ -1,7 +1,7 @@
 
 import os
 import pytest
-from src.plant_uml_image_generator import PlantUMLImageGenerator, Configuration, FileType
+from src.plant_uml_image_generator import PlantUMLImageGenerator, Configuration, Format
 from src.object_slicer import ObjectSlicer, SamplingOption
 
 @pytest.fixture(scope='session')
@@ -16,7 +16,7 @@ def test_plant_uml_json_image_gen_half(project_root, tmp_path):
         "Story.Act.ManeuverGroup"
     ]
     
-    config = Configuration(file_type = FileType.JSON, 
+    config = Configuration(format_type = Format.JSON, 
                            object_slicer_configuration = ObjectSlicer.Configuration(root_key_path="Story", 
                                                                                     separator_keypaths=separator_keypaths,
                                                                                     max_number_of_elements=(3, SamplingOption.HALF)))
@@ -42,7 +42,7 @@ def test_plant_uml_json_image_gen_prefix(project_root, tmp_path):
         "Story.Act.ManeuverGroup"
     ]
     
-    config = Configuration(file_type = FileType.JSON, 
+    config = Configuration(format_type = Format.JSON, 
                            object_slicer_configuration = ObjectSlicer.Configuration(root_key_path="Story", 
                                                                                     separator_keypaths=separator_keypaths,
                                                                                     max_number_of_elements=(5, SamplingOption.PREFIX)))
@@ -69,7 +69,7 @@ def test_plant_uml_json_image_gen_suffix(project_root, tmp_path):
         "Story.Act.ManeuverGroup"
     ]
     
-    config = Configuration(file_type = FileType.JSON, 
+    config = Configuration(format_type = Format.JSON, 
                            object_slicer_configuration = ObjectSlicer.Configuration(root_key_path="Story", 
                                                                                     separator_keypaths=separator_keypaths,
                                                                                     max_number_of_elements=(6, SamplingOption.SUFFIX)))

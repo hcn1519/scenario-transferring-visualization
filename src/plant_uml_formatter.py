@@ -1,6 +1,6 @@
 
 from dataclasses import dataclass
-from typing import List
+from typing import List, Tuple
 import json
 from enum import Enum
 
@@ -23,7 +23,6 @@ class EdgeOption:
     style: EdgeStyle = EdgeStyle.BOLD
 
     def edge_option_str(self) -> str:
-        print(self.hex_color_str)
         return f"[{self.style.value},#{self.hex_color_str}]"
 
 class PlantUMLFormatter:
@@ -76,9 +75,8 @@ class PlantUMLFormatter:
                     self.add_composition_edge(from_node=next, to_node=cur)
                     break
             
-    def get_result(self) -> str:
+    def get_result(self) -> List[str]:
         start = "@startuml\nleft to right direction\n\n"
         edges = ''.join(self.edges)
         end = "\n@enduml"
-        return start + self.content + edges + end
-        
+        return [start, self.content, edges, end]

@@ -24,10 +24,10 @@ def test_plant_uml_generator_yaml(project_root):
                            object_slicer_configuration = ObjectSlicer.Configuration(root_key_path=root_key_path, 
                                                                                     separator_keypaths=separator_keypaths))
     generator = PlantUMLImageGenerator(config=config)
-    gen_str = generator.generate_string(input_str=yaml_str)
+    gen_strs = generator.generate_uml_string_from_string(input_str=yaml_str)
     
-    assert gen_str.startswith("@startuml")
-    assert gen_str.endswith("@enduml")
+    assert gen_strs[0].startswith("@startuml")
+    assert gen_strs[0].endswith("@enduml")
     
 def test_plant_uml_generator_non_separator(project_root):
     
@@ -44,10 +44,10 @@ def test_plant_uml_generator_non_separator(project_root):
     
     generator = PlantUMLImageGenerator(config=config)
 
-    gen_str = generator.generate_string(input_str = yaml_str)
+    gen_strs = generator.generate_uml_string_from_string(input_str = yaml_str)
     
-    assert gen_str.startswith("@startuml")
-    assert gen_str.endswith("@enduml")
+    assert gen_strs[0].startswith("@startuml")
+    assert gen_strs[0].endswith("@enduml")
 
 
 def test_plant_uml_yaml_image_gen(project_root, tmp_path):

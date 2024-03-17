@@ -23,7 +23,7 @@ class ObjectSlicer:
 
     def __init__(self, configuration: Configuration):
         self.configuration = configuration
-        self.keypath_set = set()
+        self.all_keypaths = set()
         self.chunks = []
 
     def create_object_chunk_in_yaml_file(self, file_path: str):
@@ -50,18 +50,21 @@ class ObjectSlicer:
 
         mutable_dict = copy.deepcopy(dict)
         
+        if self.configuration.max_number_of_elements != float('inf'):
+            mutable_dict = self.sample_elments(input_dict=mutable_dict)
+        
         for separator_keypath in self.configuration.sorted_keypaths():
             self.get_value_by_dot_path(data=mutable_dict, dot_path=separator_keypath, original_keypath = separator_keypath)
 
         self.chunks.append(mutable_dict)
         return self.chunks
 
-    def get_value_by_dot_path(self, data, dot_path, original_keypath):
+    def sample_elments(self, input_dict):
 
         def sampled_list(elements, sampling_option):
             (maximum_length, option) = sampling_option
 
-            maximum_length = min(maximum_length, len(data))
+            maximum_length = min(maximum_length, len(elements))
 
             if maximum_length == len(elements):
                 return elements
@@ -74,15 +77,30 @@ class ObjectSlicer:
             right = maximum_length // 2
             left = maximum_length - right            
             return elements[:left] + elements[-right:] 
+        
+        res_dict = {}
+
+        for key, value in input_dict.items():
+
+            if isinstance(value, dict):
+                new_value = self.sampling(input_dict=value)
+                res_dict[key] = new_value
+            elif isinstance(value, list):
+                objects = sampled_list(elements = value, 
+                                   sampling_option=self.configuration.max_number_of_elements)
+                res_dict[key] = objects
+            else:
+                res_dict[key] = value
+        return res_dict            
+
+    def get_value_by_dot_path(self, data, dot_path, original_keypath):
 
         keys = dot_path.split('.')
 
         if len(keys) > 1:
             new_key = keys[1:]
             if isinstance(data, list):
-                objects = sampled_list(elements = data, sampling_option=self.configuration.max_number_of_elements)
-                print("data:", len(data), "obj:", len(objects))
-                for element in objects:
+                for element in data:
                     self.get_value_by_dot_path(data=element[keys[0]], dot_path=".".join(new_key), original_keypath=original_keypath)
             else:
                 self.get_value_by_dot_path(data=data[keys[0]], dot_path=".".join(new_key), original_keypath=original_keypath)
@@ -94,17 +112,16 @@ class ObjectSlicer:
                     chunk_list.append({target_key: copy.deepcopy(element[target_key])})
                     element[target_key] = f"<<Original Key Path: {original_keypath} {i}>>"
                 
-                sampled_list = sampled_list(elements = chunk_list, sampling_option=self.configuration.max_number_of_elements)
-                self.chunks.append({target_key: sampled_list})
+                self.chunks.append({target_key: chunk_list})
             else:
                 chunk = {target_key: copy.deepcopy(data[target_key])}
                 data[keys[0]] = f"<<Original Key Path: {original_keypath}>>"
                 self.chunks.append(chunk)
-        
+    
     def retrieve_all_separator_keypaths(self, input, root_keypath: str):
 
         if isinstance(input, dict):
-            self.keypath_set.add(root_keypath)
+            self.all_keypaths.add(root_keypath)
             for key, value in input.items():
 
                 if isinstance(value, dict):
@@ -116,4 +133,4 @@ class ObjectSlicer:
                     self.retrieve_all_separator_keypaths(input = value, root_keypath=root_keypath +"."+ key)
         else:
             new_key_path = root_keypath.split(".")[:-1]
-            self.keypath_set.add('.'.join(new_key_path))
+            self.all_keypaths.add('.'.join(new_key_path))

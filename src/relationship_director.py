@@ -48,17 +48,20 @@ class RelationshipDirector:
 
         source_config = PlantUMLImageGeneratorConfiguration(format_type = PlantUMLImageGeneratorFormat.DICT,
                                                             object_slicer_configuration = self.source.configuration.object_slicer_configuration)
-        return PlantUMLImageGeneratorConfiguration(format_type = PlantUMLImageGeneratorFormat.DICT,
-                                                   object_slicer_configuration = self.target.configuration.object_slicer_configuration)
+        target_config = PlantUMLImageGeneratorConfiguration(format_type = PlantUMLImageGeneratorFormat.DICT,
+                                                            object_slicer_configuration = self.source.configuration.object_slicer_configuration)
+        
+        return target_config
         
 
     def create_image(self, uml_dest_path: str):
 
-
         source_config = PlantUMLImageGeneratorConfiguration(format_type = PlantUMLImageGeneratorFormat.DICT,
-                                                            object_slicer_configuration = self.source.configuration.object_slicer_configuration)
+                                                            object_slicer_configuration = self.source.configuration.object_slicer_configuration,
+                                                            wrapping_state_name=self.source.configuration.name)
         target_config = PlantUMLImageGeneratorConfiguration(format_type = PlantUMLImageGeneratorFormat.DICT,
-                                                            object_slicer_configuration = self.target.configuration.object_slicer_configuration)
+                                                            object_slicer_configuration = self.target.configuration.object_slicer_configuration,
+                                                            wrapping_state_name=self.target.configuration.name)
         
         source_generator = PlantUMLImageGenerator(config=source_config)
         source_strs = source_generator.generate_uml_string_from_dict(input_dict=self.source.source)

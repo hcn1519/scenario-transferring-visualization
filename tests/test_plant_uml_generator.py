@@ -27,7 +27,7 @@ def test_plant_uml_generator_yaml(project_root):
     gen_strs = generator.generate_uml_string_from_string(input_str=yaml_str)
     
     assert gen_strs[0].startswith("@startuml")
-    assert gen_strs[0].endswith("@enduml")
+    assert gen_strs[-1].endswith("@enduml")
     
 def test_plant_uml_generator_non_separator(project_root):
     
@@ -45,9 +45,8 @@ def test_plant_uml_generator_non_separator(project_root):
     generator = PlantUMLImageGenerator(config=config)
 
     gen_strs = generator.generate_uml_string_from_string(input_str = yaml_str)
-    
     assert gen_strs[0].startswith("@startuml")
-    assert gen_strs[0].endswith("@enduml")
+    assert gen_strs[-1].endswith("@enduml")
 
 
 def test_plant_uml_yaml_image_gen(project_root, tmp_path):

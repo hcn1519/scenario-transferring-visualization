@@ -14,6 +14,7 @@ class Format(Enum):
 class Configuration:
     format_type: Format
     object_slicer_configuration: ObjectSlicer.Configuration
+    wrapping_state_name: Optional[str] = None
 
     def root_key_path(self) -> str:
         return self.object_slicer_configuration.root_key_path
@@ -41,14 +42,17 @@ class PlantUMLImageGenerator:
         return self.generate_uml_string_from_chunks(chunks=chunks)
     
     def generate_uml_string_from_chunks(self, chunks) -> List[str]:
-        if len(self.config.separator_keypaths()) == 0:
+        
+        if len(self.config.separator_keypaths()) == 0:    
             title = self.config.root_key_path() if self.config.root_key_path() else list(chunks[0].keys())[0]
-            uml_formatter = PlantUMLFormatter(labeled_dictionaries=[LabeledDictionary(title=title, chunk=chunks[0])])
+            uml_formatter = PlantUMLFormatter(labeled_dictionaries=[LabeledDictionary(title=title, chunk=chunks[0])],
+                                              wrapping_state_name = self.config.wrapping_state_name)
             return uml_formatter.get_result()
 
         keypaths = list(self.config.object_slicer_configuration.sorted_keypaths()) + [self.config.root_key_path()]
 
-        uml_formatter = PlantUMLFormatter(labeled_dictionaries=[LabeledDictionary(title=keypath, chunk=chunk) for chunk, keypath in zip(reversed(chunks), reversed(keypaths))])
+        uml_formatter = PlantUMLFormatter(labeled_dictionaries=[LabeledDictionary(title=keypath, chunk=chunk) for chunk, keypath in zip(reversed(chunks), reversed(keypaths))],
+                                          wrapping_state_name = self.config.wrapping_state_name)
         uml_formatter.draw_composition_relationships()
         return uml_formatter.get_result()
 

@@ -1,6 +1,6 @@
 
 from dataclasses import dataclass
-from typing import List, Tuple
+from typing import List, Optional
 import json
 from enum import Enum
 
@@ -27,7 +27,7 @@ class EdgeOption:
 
 class PlantUMLFormatter:
 
-    def __init__(self, labeled_dictionaries: List[LabeledDictionary]) -> None:
+    def __init__(self, labeled_dictionaries: List[LabeledDictionary], wrapping_state_name: Optional[str] = None) -> None:
         self.content = ""
         self.edges = []
         self.labeled_dictionaries = labeled_dictionaries
@@ -39,6 +39,9 @@ class PlantUMLFormatter:
             formatted_json = self.format_json_state_diagram(container_name = key, json_string = json_string_chunk)
             self.content += self.wrap_content_into_state(state_name = labeled_dict.title, content=formatted_json)
         
+        if wrapping_state_name:
+            self.content = self.wrap_content_into_state(state_name = wrapping_state_name, 
+                                                        content=self.content)
 
     def format_json_state_diagram(self, container_name: str, json_string: str) -> str:
         return f"json {container_name} {json_string}\n"

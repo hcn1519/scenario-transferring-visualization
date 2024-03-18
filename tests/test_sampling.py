@@ -88,7 +88,7 @@ def test_plant_uml_json_image_gen_suffix(project_root, tmp_path):
     assert os.path.exists(uml_file_path)
     assert os.path.exists(output_file_path)
 
-def test_get_all_key_paths(project_root, tmp_path):
+def test_get_all_key_paths(project_root):
 
     file_path = os.path.join(project_root, "samples/scenario_loc709.yml")
     with open(file_path, "r") as file:
@@ -106,7 +106,7 @@ def test_get_all_key_paths(project_root, tmp_path):
     assert "Secenario.OpenSCENARIO" in object_slicer.all_keypaths
     assert "Secenario.OpenSCENARIO.RoadNetwork.TrafficSignals" in object_slicer.all_keypaths
 
-def test_slicing(project_root, tmp_path):
+def test_slicing(project_root):
 
     file_path = os.path.join(project_root, "samples/scenario_loc709.yml")
     with open(file_path, "r") as file:

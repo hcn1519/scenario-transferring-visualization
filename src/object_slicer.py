@@ -4,6 +4,7 @@ import copy
 from typing import Optional, List, Tuple
 from enum import Enum
 from dataclasses import dataclass
+from collections import defaultdict
 
 class SamplingOption(Enum):
     PREFIX = 1
@@ -14,8 +15,8 @@ class SamplingOption(Enum):
 class ObjectSlicer:
     @dataclass
     class Configuration:
-        root_key_path: Optional[str] # if there are multiple top-level objects, we wrap it using root_key_path and treat it like a tree.
         separator_keypaths: List[str]
+        root_key_path: str = "" # if there are multiple top-level objects, we wrap it using root_key_path and treat it like a tree.
         max_number_of_elements: Tuple[int, SamplingOption] = (float('inf'), SamplingOption.PREFIX)
 
         def sorted_keypaths(self):
@@ -52,10 +53,23 @@ class ObjectSlicer:
         
         if self.configuration.max_number_of_elements != float('inf'):
             mutable_dict = self.sample_elments(input_dict=mutable_dict)
-        
-        for separator_keypath in self.configuration.sorted_keypaths():
-            self.get_value_by_dot_path(data=mutable_dict, dot_path=separator_keypath, original_keypath = separator_keypath)
 
+        for separator_keypath in self.configuration.sorted_keypaths():
+            self.update_chunks_by_keypath(data=mutable_dict, 
+                                          keypath=separator_keypath, 
+                                          original_keypath = separator_keypath)
+
+        group_dict = defaultdict(list)
+        for chunk in self.chunks:
+            for key, value in chunk.items():
+                new_key = key.split('.')[-1]
+                group_dict[new_key].append(value)
+                
+        chunks = []
+        for key, value in group_dict.items():
+            chunks.append({key: value})
+
+        self.chunks = chunks
         self.chunks.append(mutable_dict)
         return self.chunks
 
@@ -83,7 +97,7 @@ class ObjectSlicer:
         for key, value in input_dict.items():
 
             if isinstance(value, dict):
-                new_value = self.sampling(input_dict=value)
+                new_value = self.sample_elments(input_dict=value)
                 res_dict[key] = new_value
             elif isinstance(value, list):
                 objects = sampled_list(elements = value, 
@@ -93,26 +107,30 @@ class ObjectSlicer:
                 res_dict[key] = value
         return res_dict            
 
-    def get_value_by_dot_path(self, data, dot_path, original_keypath):
+    def update_chunks_by_keypath(self, data, keypath, original_keypath):
 
-        keys = dot_path.split('.')
+        keys = keypath.split('.')
 
         if len(keys) > 1:
             new_key = keys[1:]
             if isinstance(data, list):
                 for element in data:
-                    self.get_value_by_dot_path(data=element[keys[0]], dot_path=".".join(new_key), original_keypath=original_keypath)
+                    self.update_chunks_by_keypath(data=element[keys[0]], 
+                                                  keypath=".".join(new_key), 
+                                                  original_keypath=original_keypath)
             else:
-                self.get_value_by_dot_path(data=data[keys[0]], dot_path=".".join(new_key), original_keypath=original_keypath)
+                self.update_chunks_by_keypath(data=data[keys[0]], 
+                                              keypath=".".join(new_key), 
+                                              original_keypath=original_keypath)
         elif len(keys) == 1:
             target_key = keys[0]
+            
             if isinstance(data, list):
                 chunk_list = []
                 for i, element in enumerate(data):
-                    chunk_list.append({target_key: copy.deepcopy(element[target_key])})
+                    chunk_list.append(copy.deepcopy(element[target_key]))
                     element[target_key] = f"<<Original Key Path: {original_keypath} {i}>>"
-                
-                self.chunks.append({target_key: chunk_list})
+                self.chunks.append({original_keypath: chunk_list})
             else:
                 chunk = {target_key: copy.deepcopy(data[target_key])}
                 data[keys[0]] = f"<<Original Key Path: {original_keypath}>>"

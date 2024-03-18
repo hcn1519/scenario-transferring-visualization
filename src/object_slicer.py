@@ -51,8 +51,9 @@ class ObjectSlicer:
 
         mutable_dict = copy.deepcopy(dict)
         
+        print("self.configuration.max_number_of_elements != float('inf')", self.configuration.max_number_of_elements != float('inf'))
         if self.configuration.max_number_of_elements != float('inf'):
-            mutable_dict = self.sample_elments(input_dict=mutable_dict)
+            mutable_dict = self.sample_elments(input_dict=dict)
 
         for separator_keypath in self.configuration.sorted_keypaths():
             self.update_chunks_by_keypath(data=mutable_dict, 
@@ -93,16 +94,23 @@ class ObjectSlicer:
             return elements[:left] + elements[-right:] 
         
         res_dict = {}
-
         for key, value in input_dict.items():
-
             if isinstance(value, dict):
                 new_value = self.sample_elments(input_dict=value)
                 res_dict[key] = new_value
             elif isinstance(value, list):
                 objects = sampled_list(elements = value, 
-                                   sampling_option=self.configuration.max_number_of_elements)
-                res_dict[key] = objects
+                                       sampling_option=self.configuration.max_number_of_elements)
+                
+                updated = []
+                for obj in objects:
+                    if isinstance(obj, dict):
+                        updated.append(self.sample_elments(input_dict=obj))
+
+                if updated:
+                    res_dict[key] = updated
+                else:
+                    res_dict[key] = objects
             else:
                 res_dict[key] = value
         return res_dict            

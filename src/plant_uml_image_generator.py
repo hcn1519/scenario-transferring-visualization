@@ -3,17 +3,27 @@ from dataclasses import dataclass
 from typing import Optional, List, Tuple, Dict
 from enum import Enum
 from src.object_slicer import ObjectSlicer
-from src.plant_uml_formatter import PlantUMLFormatter, LabeledDictionary
+from src.plant_uml_formatter import PlantUMLFormatter, LabeledDictionary, EdgeOption
 
 class Format(Enum):
     JSON = 'json'
     YAML = 'yaml'
     DICT = 'dict'
+
+
+@dataclass
+class Relationship:
+    src: str
+    dest: str
+    edge_option: EdgeOption
+    highlight_state: Tuple[bool, bool]
     
+
 @dataclass
 class Configuration:
     format_type: Format
     object_slicer_configuration: ObjectSlicer.Configuration
+    relationships: List[Relationship]
     wrapping_state_name: Optional[str] = None
 
     def root_key_path(self) -> str:
@@ -54,15 +64,25 @@ class PlantUMLImageGenerator:
         uml_formatter = PlantUMLFormatter(labeled_dictionaries=[LabeledDictionary(title=keypath, chunk=chunk) for chunk, keypath in zip(reversed(chunks), reversed(keypaths))],
                                           wrapping_state_name = self.config.wrapping_state_name)
         uml_formatter.draw_composition_relationships()
+
+        for relationship in self.config.relationships:
+            uml_formatter.add_edge(from_node_key=relationship.src, 
+                                   to_node_key=relationship.dest, 
+                                   edge_option=relationship.edge_option, 
+                                   notes=relationship.notes)
+
         return uml_formatter.get_result()
 
     def generate_image_file(self, input_str: str, uml_file_path: str, max_image_size: int=8192) -> str:
         gen_strs = self.generate_uml_string_from_string(input_str=input_str)
         merged_str = ''.join(gen_strs)
 
-        self.generate_image_file_from_uml(uml_str= merged_str, uml_file_path=uml_file_path, max_image_size=max_image_size)
+        PlantUMLImageGenerator.generate_image_file_from_uml(uml_str= merged_str, 
+                                                            uml_file_path=uml_file_path, 
+                                                            max_image_size=max_image_size)
 
-    def generate_image_file_from_uml(self, uml_str: str, uml_file_path: str, max_image_size: int=8192) -> str:
+    @staticmethod
+    def generate_image_file_from_uml(uml_str: str, uml_file_path: str, max_image_size: int=8192) -> str:
         with open(uml_file_path, "w") as file:
             file.write(uml_str)
 

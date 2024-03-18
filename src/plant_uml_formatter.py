@@ -60,14 +60,22 @@ class PlantUMLFormatter:
         notes = [f'  {from_node.title} contains {to_node.title}\n']
         self.add_edge(from_node=from_node, to_node=to_node, edge_option=option, notes=notes)
     
+    def add_edge(self, from_node_key: str, to_node_key: str, edge_option: EdgeOption, notes: List[str]):
+
+        from_node = next((obj for obj in self.labeled_dictionaries if obj.title == from_node_key), None)
+        to_node = next((obj for obj in self.labeled_dictionaries if obj.title == to_node_key), None)
+
+        if not from_node or not to_node:
+            print("error!")
+            return
+        self.add_edge(from_node=from_node, to_node=to_node, edge_option=edge_option, notes=notes)
+
     def add_edge(self, from_node: LabeledDictionary, to_node: LabeledDictionary, edge_option: EdgeOption, notes: List[str]):
-        res = [f'{from_node.state_name()} -{edge_option.edge_option_str()}-> {to_node.state_name()}\n']
-        if notes:
-            res.append(f'note on link\n')
-            for note in notes:
-                res.append(note)
-            res.append("end note\n\n")
-        self.edges.append(''.join(res))
+        edge_str = PlantUMLFormatter.edge_str(from_node_str=from_node.title, 
+                                              to_node_str=to_node.title, 
+                                              edge_option=edge_option, 
+                                              notes=notes)
+        self.edges.append(edge_str)
 
     def draw_composition_relationships(self):
         sorted_labeled_dicts = sorted(self.labeled_dictionaries, key=lambda x: x.title, reverse=True)
@@ -77,9 +85,22 @@ class PlantUMLFormatter:
                 if next.title in cur.title:
                     self.add_composition_edge(from_node=next, to_node=cur)
                     break
-            
+
     def get_result(self) -> List[str]:
         start = "@startuml\nleft to right direction\n\n"
         edges = ''.join(self.edges)
         end = "\n@enduml"
         return [start, self.content, edges, end]
+    
+    @staticmethod
+    def edge_str(from_node_str: str, to_node_str: str, edge_option: EdgeOption, notes: List[str]):
+        def state_name(title: str) -> str:
+            return "state_" + title.replace(".", "_")
+    
+        res = [f'{state_name(from_node_str)} -{edge_option.edge_option_str()}-> {state_name(to_node_str)}\n']
+        if notes:
+            res.append(f'note on link\n')
+            for note in notes:
+                res.append(note)
+            res.append("end note\n\n")
+        return ''.join(res)

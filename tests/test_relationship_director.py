@@ -43,11 +43,14 @@ def test_relationship_routing_request(project_root):
     director = RelationshipDirector(
         name="RoutingRequest",
         source=DataSource(configuration=Configuration(name="ApolloScenario", 
-                                                      object_slicer_configuration=source_config), 
+                                                      object_slicer_configuration=source_config,
+                                                      relationships=[]), 
                           source=source_dict),
         target=DataSource(configuration=Configuration(name="AutowareScenario", 
-                                                      object_slicer_configuration=target_config), 
-                          source=target_dict)
+                                                      object_slicer_configuration=target_config,
+                                                      relationships=[]), 
+                          source=target_dict),
+        relationships=[]
         )
     
     uml_dest_path = os.path.join(project_root, "routing_request.txt")
@@ -95,11 +98,14 @@ def test_relationship_obstacles(project_root):
     director = RelationshipDirector(
         name="Perception Obstacles",
         source=DataSource(configuration=Configuration(name="ApolloScenario", 
-                                                      object_slicer_configuration=source_config), 
+                                                      object_slicer_configuration=source_config,
+                                                      relationships=[]), 
                           source=source_dict),
         target=DataSource(configuration=Configuration(name="AutowareScenario", 
-                                                      object_slicer_configuration=target_config), 
-                          source=target_dict)
+                                                      object_slicer_configuration=target_config,
+                                                      relationships=[]), 
+                          source=target_dict),
+        relationships=[]
         )
     
     uml_dest_path = os.path.join(project_root, "obstacle.txt")

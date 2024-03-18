@@ -16,7 +16,6 @@ class Relationship:
     src: str
     dest: str
     edge_option: EdgeOption
-    highlight_state: Tuple[bool, bool]
     
 
 @dataclass
@@ -24,6 +23,7 @@ class Configuration:
     format_type: Format
     object_slicer_configuration: ObjectSlicer.Configuration
     relationships: List[Relationship]
+    theme_map: Dict[str, str]
     wrapping_state_name: Optional[str] = None
 
     def root_key_path(self) -> str:
@@ -31,6 +31,11 @@ class Configuration:
 
     def separator_keypaths(self) -> List[str]:
         return self.object_slicer_configuration.separator_keypaths
+    
+    def theme_str(self, keypath: str):
+        if not keypath in self.theme_map:
+            return ""
+        return "#" + self.theme_map[keypath]
 
 class PlantUMLImageGenerator:
     
@@ -55,13 +60,13 @@ class PlantUMLImageGenerator:
         
         if len(self.config.separator_keypaths()) == 0:    
             title = self.config.root_key_path() if self.config.root_key_path() else list(chunks[0].keys())[0]
-            uml_formatter = PlantUMLFormatter(labeled_dictionaries=[LabeledDictionary(title=title, chunk=chunks[0])],
+            uml_formatter = PlantUMLFormatter(labeled_dictionaries=[LabeledDictionary(title=title, chunk=chunks[0], theme_str=self.config.theme_str(title))],
                                               wrapping_state_name = self.config.wrapping_state_name)
             return uml_formatter.get_result()
 
         keypaths = list(self.config.object_slicer_configuration.sorted_keypaths()) + [self.config.root_key_path()]
 
-        uml_formatter = PlantUMLFormatter(labeled_dictionaries=[LabeledDictionary(title=keypath, chunk=chunk) for chunk, keypath in zip(reversed(chunks), reversed(keypaths))],
+        uml_formatter = PlantUMLFormatter(labeled_dictionaries=[LabeledDictionary(title=keypath, chunk=chunk, theme_str=self.config.theme_str(keypath)) for chunk, keypath in zip(reversed(chunks), reversed(keypaths))],
                                           wrapping_state_name = self.config.wrapping_state_name)
         uml_formatter.draw_composition_relationships()
 

@@ -15,6 +15,7 @@ class RelationshipDataSourceConfiguration:
         self.name = name
         self.relationships = relationships
         self.object_slicer_configuration = object_slicer_configuration
+        self.theme_map = {}
         
     # shortcut methods
 
@@ -39,6 +40,7 @@ class RelationshipDataSource:
 class RelationshipDirector:
     name: str
     relationships: List[Relationship]
+    theme_map: Dict[str, str]
     source: RelationshipDataSource
     target: RelationshipDataSource
 
@@ -46,23 +48,29 @@ class RelationshipDirector:
         self.name = name
         self.source = source
         self.target = target
+        self.theme_map = {}
+        for relationship in relationships:
+            self.theme_map[relationship.src] = relationship.edge_option.hex_color_str
+            self.theme_map[relationship.dest] = relationship.edge_option.hex_color_str
 
         src_target_relationship = Relationship(src=self.source.configuration.name, 
                                                dest=self.target.configuration.name, 
-                                               edge_option=EdgeOption(hex_color_str="FF0000"),
-                                               highlight_state=(True, True))        
+                                               edge_option=EdgeOption(hex_color_str="FF0000"))
         self.relationships = [src_target_relationship] + relationships
+
 
     def create_image(self, uml_dest_path: str):
 
         source_config = PlantUMLImageGeneratorConfiguration(format_type = PlantUMLImageGeneratorFormat.DICT,
                                                             object_slicer_configuration = self.source.configuration.object_slicer_configuration,
                                                             wrapping_state_name=self.source.configuration.name,
-                                                            relationships=self.source.configuration.relationships)
+                                                            relationships=self.source.configuration.relationships,
+                                                            theme_map=self.theme_map)
         target_config = PlantUMLImageGeneratorConfiguration(format_type = PlantUMLImageGeneratorFormat.DICT,
                                                             object_slicer_configuration = self.target.configuration.object_slicer_configuration,
                                                             wrapping_state_name=self.target.configuration.name,
-                                                            relationships=self.target.configuration.relationships)
+                                                            relationships=self.target.configuration.relationships,
+                                                            theme_map=self.theme_map)
         
         source_generator = PlantUMLImageGenerator(config=source_config)
         source_strs = source_generator.generate_uml_string_from_dict(input_dict=self.source.source)
@@ -81,9 +89,9 @@ class RelationshipDirector:
         relationship_edge_str = ""
         for relationship in self.relationships:
             edge = PlantUMLFormatter.edge_str(from_node_str=relationship.src, 
-                                          to_node_str=relationship.dest,
-                                          edge_option=relationship.edge_option,
-                                          notes=[])
+                                              to_node_str=relationship.dest,
+                                              edge_option=relationship.edge_option,
+                                              notes=[])
             relationship_edge_str += edge
         
         print("relationship_edge_str:", relationship_edge_str)

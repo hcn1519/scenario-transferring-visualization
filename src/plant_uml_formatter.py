@@ -8,9 +8,13 @@ from enum import Enum
 class LabeledDictionary:
     title: str
     chunk: dict
+    theme_str: str
 
     def state_name(self) -> str:
         return "state_" + self.title.replace(".", "_")
+    
+    def theme_str_without_hash(self) -> str:
+        return self.theme_str.lstrip("#")
 
 @dataclass
 class EdgeOption:
@@ -27,7 +31,9 @@ class EdgeOption:
 
 class PlantUMLFormatter:
 
-    def __init__(self, labeled_dictionaries: List[LabeledDictionary], wrapping_state_name: Optional[str] = None) -> None:
+    def __init__(self, 
+                 labeled_dictionaries: List[LabeledDictionary], 
+                 wrapping_state_name: Optional[str] = None) -> None:
         self.content = ""
         self.edges = []
         self.labeled_dictionaries = labeled_dictionaries
@@ -36,39 +42,45 @@ class PlantUMLFormatter:
             json_string_chunk = json.dumps(labeled_dict.chunk, indent=2)
             key = list(labeled_dict.chunk.keys())[0]
             
-            formatted_json = self.format_json_state_diagram(container_name = key, json_string = json_string_chunk)
-            self.content += self.wrap_content_into_state(state_name = labeled_dict.title, content=formatted_json)
+            formatted_json = self.format_json_state_diagram(container_name = key, json_string = json_string_chunk, theme_str=labeled_dict.theme_str)
+            self.content += self.wrap_content_into_state(state_name = labeled_dict.title, content=formatted_json, hex_color_str=labeled_dict.theme_str_without_hash())
         
         if wrapping_state_name:
             self.content = self.wrap_content_into_state(state_name = wrapping_state_name, 
                                                         content=self.content)
 
-    def format_json_state_diagram(self, container_name: str, json_string: str) -> str:
-        return f"json {container_name} {json_string}\n"
+    def format_json_state_diagram(self, container_name: str, json_string: str, theme_str: str) -> str:
+        return f"json {container_name} {theme_str} {json_string}\n"
     
-    def wrap_content_into_state(self, state_name: str, content: str) -> str:
+    def wrap_content_into_state(self, state_name: str, content: str, hex_color_str: str="") -> str:
         type_name = "state_" + state_name.replace(".", "_")
         
+        if hex_color_str != "":
+            return ''.join((
+                f'state \"{state_name}\" as {type_name} ##[bold]{hex_color_str} {{\n',
+                f'  {content}\n',
+                f'}}\n'
+            ))
+        
         return ''.join((
-            f'state \"{state_name}\" as {type_name} {{\n',
-            f'  {content}\n',
-            f'}}\n'
-        ))
+                f'state \"{state_name}\" as {type_name} {{\n',
+                f'  {content}\n',
+                f'}}\n'
+            ))
     
     def add_composition_edge(self, from_node: LabeledDictionary, to_node: LabeledDictionary):
         option = EdgeOption(hex_color_str="000000")
         notes = [f'  {from_node.title} contains {to_node.title}\n']
         self.add_edge(from_node=from_node, to_node=to_node, edge_option=option, notes=notes)
     
-    def add_edge(self, from_node_key: str, to_node_key: str, edge_option: EdgeOption, notes: List[str]):
+    # def add_edge(self, from_node_key: str, to_node_key: str, edge_option: EdgeOption, notes: List[str]):
 
-        from_node = next((obj for obj in self.labeled_dictionaries if obj.title == from_node_key), None)
-        to_node = next((obj for obj in self.labeled_dictionaries if obj.title == to_node_key), None)
+    #     from_node = next((obj for obj in self.labeled_dictionaries if obj.title == from_node_key), None)
+    #     to_node = next((obj for obj in self.labeled_dictionaries if obj.title == to_node_key), None)
 
-        if not from_node or not to_node:
-            print("error!")
-            return
-        self.add_edge(from_node=from_node, to_node=to_node, edge_option=edge_option, notes=notes)
+    #     if not from_node or not to_node:
+    #         return
+    #     self.add_edge(from_node=from_node, to_node=to_node, edge_option=edge_option, notes=notes)
 
     def add_edge(self, from_node: LabeledDictionary, to_node: LabeledDictionary, edge_option: EdgeOption, notes: List[str]):
         edge_str = PlantUMLFormatter.edge_str(from_node_str=from_node.title, 

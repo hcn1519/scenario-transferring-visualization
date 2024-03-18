@@ -1,12 +1,12 @@
 import os
 import pytest
 import yaml
-from src.plant_uml_image_generator import PlantUMLImageGenerator, Configuration, Format
+from src.plant_uml_image_generator import PlantUMLImageGenerator, Configuration, Relationship
+from src.plant_uml_formatter import EdgeOption
 from src.object_slicer import ObjectSlicer, SamplingOption
 from src.cyber_record_reader import CyberRecordReader
 from src.relationship_director import RelationshipDirector, RelationshipDataSource as DataSource, RelationshipDataSourceConfiguration as Configuration
-from protobuf_to_dict import protobuf_to_dict
-from collections import defaultdict
+
 
 @pytest.fixture(scope='session')
 def project_root(pytestconfig):
@@ -50,7 +50,9 @@ def test_relationship_routing_request(project_root):
                                                       object_slicer_configuration=target_config,
                                                       relationships=[]), 
                           source=target_dict),
-        relationships=[]
+        relationships=[Relationship(src="RoutingRequest", 
+                                    dest="Scenario.OpenSCENARIO.Entities",
+                                    edge_option=EdgeOption(hex_color_str="1DB100"))]
         )
     
     uml_dest_path = os.path.join(project_root, "routing_request.txt")

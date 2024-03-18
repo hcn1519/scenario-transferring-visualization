@@ -78,7 +78,7 @@ class PlantUMLImageGenerator:
 
         return uml_formatter.get_result()
 
-    def generate_image_file(self, input_str: str, uml_file_path: str, max_image_size: int=8192) -> str:
+    def generate_image_file(self, input_str: str, uml_file_path: str, max_image_size: int=16000) -> str:
         gen_strs = self.generate_uml_string_from_string(input_str=input_str)
         merged_str = ''.join(gen_strs)
 
@@ -87,7 +87,7 @@ class PlantUMLImageGenerator:
                                                             max_image_size=max_image_size)
 
     @staticmethod
-    def generate_image_file_from_uml(uml_str: str, uml_file_path: str, max_image_size: int=8192) -> str:
+    def generate_image_file_from_uml(uml_str: str, uml_file_path: str, max_image_size: int=16000) -> str:
         with open(uml_file_path, "w") as file:
             file.write(uml_str)
 

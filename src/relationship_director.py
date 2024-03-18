@@ -52,7 +52,7 @@ class RelationshipDirector:
         for relationship in relationships:
             self.theme_map[relationship.src] = relationship.edge_option.hex_color_str
             self.theme_map[relationship.dest] = relationship.edge_option.hex_color_str
-
+        
         src_target_relationship = Relationship(src=self.source.configuration.name, 
                                                dest=self.target.configuration.name, 
                                                edge_option=EdgeOption(hex_color_str="FF0000"))
@@ -94,8 +94,6 @@ class RelationshipDirector:
                                               notes=[])
             relationship_edge_str += edge
         
-        print("relationship_edge_str:", relationship_edge_str)
         result = start + source_content + target_content + source_edge + target_edge + relationship_edge_str + end
-
         PlantUMLImageGenerator.generate_image_file_from_uml(uml_str=result, uml_file_path=uml_dest_path)
         

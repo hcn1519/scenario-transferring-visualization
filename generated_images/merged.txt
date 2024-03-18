@@ -1,0 +1,1775 @@
+@startuml
+left to right direction
+
+state "ApolloScenario" as state_ApolloScenario {
+  state "ApolloScenario" as state_ApolloScenario {
+  json ApolloScenario  {
+  "ApolloScenario": {
+    "PERCEPTION_OBSTACLES": {
+      "PERCEPTION_OBSTACLES": [
+        {
+          "perception_obstacle": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle 0>>",
+          "header": {
+            "timestamp_sec": 1661458004.7425501,
+            "module_name": "MAGGIE",
+            "sequence_num": 15
+          }
+        }
+      ]
+    },
+    "ROUTING_REQUEST": {
+      "ROUTING_REQUEST": "<<Original Key Path: ApolloScenario.ROUTING_REQUEST.ROUTING_REQUEST>>"
+    }
+  }
+}
+
+}
+state "ApolloScenario.ROUTING_REQUEST.ROUTING_REQUEST" as state_ApolloScenario_ROUTING_REQUEST_ROUTING_REQUEST ##[bold]1DB100 {
+  json ROUTING_REQUEST #1DB100 {
+  "ROUTING_REQUEST": [
+    [
+      {
+        "header": {
+          "timestamp_sec": 1661458009.777059,
+          "module_name": "MAGGIE",
+          "sequence_num": 0
+        },
+        "waypoint": [
+          {
+            "pose": {
+              "x": 587079.3045861976,
+              "y": 4141574.299574421
+            },
+            "heading": 2.883901414579166
+          },
+          {
+            "id": "lane_32",
+            "s": 0.0
+          },
+          {
+            "id": "lane_30",
+            "s": 0.0
+          },
+          {
+            "id": "lane_18",
+            "s": 0.0
+          },
+          {
+            "id": "lane_26",
+            "s": 26.2
+          }
+        ]
+      }
+    ]
+  ]
+}
+
+}
+state "ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle" as state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle ##[bold]56C1FF {
+  json perception_obstacle #56C1FF {
+  "perception_obstacle": [
+    [
+      [
+        {
+          "id": 336869,
+          "position": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.position 0>>",
+          "theta": -1.9883158777364047,
+          "velocity": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.velocity 0>>",
+          "length": 4.933,
+          "width": 2.11,
+          "height": 1.48,
+          "polygon_point": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.polygon_point 0>>",
+          "tracking_time": 1.0,
+          "type": "VEHICLE",
+          "timestamp": 1661458004.7047822,
+          "acceleration": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.acceleration 0>>"
+        },
+        {
+          "id": 734981,
+          "position": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.position 1>>",
+          "theta": 1.3106495901812862,
+          "velocity": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.velocity 1>>",
+          "length": 4.933,
+          "width": 2.11,
+          "height": 1.48,
+          "polygon_point": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.polygon_point 1>>",
+          "tracking_time": 1.0,
+          "type": "VEHICLE",
+          "timestamp": 1661458004.6972768,
+          "acceleration": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.acceleration 1>>"
+        },
+        {
+          "id": 811421,
+          "position": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.position 2>>",
+          "theta": 2.8753165748570138,
+          "velocity": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.velocity 2>>",
+          "length": 4.933,
+          "width": 2.11,
+          "height": 1.48,
+          "polygon_point": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.polygon_point 2>>",
+          "tracking_time": 1.0,
+          "type": "VEHICLE",
+          "timestamp": 1661458004.737983,
+          "acceleration": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.acceleration 2>>"
+        },
+        {
+          "id": 0,
+          "position": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.position 3>>",
+          "theta": -2.3567985091803845,
+          "velocity": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.velocity 3>>",
+          "length": 0.3,
+          "width": 0.5,
+          "height": 1.75,
+          "polygon_point": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.polygon_point 3>>",
+          "tracking_time": 1.0,
+          "type": "PEDESTRIAN",
+          "timestamp": 1661458004.741101,
+          "acceleration": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.acceleration 3>>"
+        },
+        {
+          "id": 1,
+          "position": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.position 4>>",
+          "theta": -1.499577123243005,
+          "velocity": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.velocity 4>>",
+          "length": 0.3,
+          "width": 0.5,
+          "height": 1.75,
+          "polygon_point": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.polygon_point 4>>",
+          "tracking_time": 1.0,
+          "type": "PEDESTRIAN",
+          "timestamp": 1661458004.7415185,
+          "acceleration": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.acceleration 4>>"
+        },
+        {
+          "id": 2,
+          "position": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.position 5>>",
+          "theta": 0.1579133258077452,
+          "velocity": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.velocity 5>>",
+          "length": 0.3,
+          "width": 0.5,
+          "height": 1.75,
+          "polygon_point": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.polygon_point 5>>",
+          "tracking_time": 1.0,
+          "type": "PEDESTRIAN",
+          "timestamp": 1661458004.7423153,
+          "acceleration": "<<Original Key Path: ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.acceleration 5>>"
+        }
+      ]
+    ]
+  ]
+}
+
+}
+state "ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.acceleration" as state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle_acceleration {
+  json acceleration  {
+  "acceleration": [
+    [
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    ]
+  ]
+}
+
+}
+state "ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.velocity" as state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle_velocity {
+  json velocity  {
+  "velocity": [
+    [
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      {
+        "x": -0.0,
+        "y": -0.0,
+        "z": 0.0
+      },
+      {
+        "x": 0.19924523577113026,
+        "y": -2.7929019560347097,
+        "z": 0.0
+      },
+      {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    ]
+  ]
+}
+
+}
+state "ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.position" as state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle_position {
+  json position  {
+  "position": [
+    [
+      {
+        "x": 586972.8541171899,
+        "y": 4141294.0414221543,
+        "z": 0.0
+      },
+      {
+        "x": 587044.4300003723,
+        "y": 4141550.060588833,
+        "z": 0.0
+      },
+      {
+        "x": 587071.4129933019,
+        "y": 4141579.80015071,
+        "z": 0.0
+      },
+      {
+        "x": 587048.2018432617,
+        "y": 4141605.9399967194,
+        "z": 0.0
+      },
+      {
+        "x": 587066.6591169962,
+        "y": 4141600.1098938207,
+        "z": 0.0
+      },
+      {
+        "x": 587059.6231508255,
+        "y": 4141574.789045334,
+        "z": 0.0
+      }
+    ]
+  ]
+}
+
+}
+state "ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.polygon_point" as state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle_polygon_point {
+  json polygon_point  {
+  "polygon_point": [
+    [
+      [
+        {
+          "x": 586972.2411171698,
+          "y": 4141290.05778613,
+          "z": 0.0
+        },
+        {
+          "x": 586974.2414207016,
+          "y": 4141294.56702939,
+          "z": 0.0
+        },
+        {
+          "x": 586972.3126748514,
+          "y": 4141295.4226224273,
+          "z": 0.0
+        },
+        {
+          "x": 586970.3123713196,
+          "y": 4141290.9133791667,
+          "z": 0.0
+        }
+      ],
+      [
+        {
+          "x": 587044.411093711,
+          "y": 4141554.091068648,
+          "z": 0.0
+        },
+        {
+          "x": 587043.1422158391,
+          "y": 4141549.3240530253,
+          "z": 0.0
+        },
+        {
+          "x": 587045.1812190752,
+          "y": 4141548.7813138585,
+          "z": 0.0
+        },
+        {
+          "x": 587046.4500969471,
+          "y": 4141553.548329481,
+          "z": 0.0
+        }
+      ],
+      [
+        {
+          "x": 587067.3824733123,
+          "y": 4141579.805948439,
+          "z": 0.0
+        },
+        {
+          "x": 587072.1416220517,
+          "y": 4141578.5078759156,
+          "z": 0.0
+        },
+        {
+          "x": 587072.6968486937,
+          "y": 4141580.543514237,
+          "z": 0.0
+        },
+        {
+          "x": 587067.9376999543,
+          "y": 4141581.8415867607,
+          "z": 0.0
+        }
+      ],
+      [
+        {
+          "x": 587048.2723830846,
+          "y": 4141605.657111348,
+          "z": 0.0
+        },
+        {
+          "x": 587048.484643212,
+          "y": 4141605.869115212,
+          "z": 0.0
+        },
+        {
+          "x": 587048.1313034388,
+          "y": 4141606.2228820906,
+          "z": 0.0
+        },
+        {
+          "x": 587047.9190433114,
+          "y": 4141606.0108782267,
+          "z": 0.0
+        }
+      ],
+      [
+        {
+          "x": 587066.9191570942,
+          "y": 4141599.9780638264,
+          "z": 0.0
+        },
+        {
+          "x": 587066.8978093903,
+          "y": 4141600.2773033218,
+          "z": 0.0
+        },
+        {
+          "x": 587066.3990768982,
+          "y": 4141600.241723815,
+          "z": 0.0
+        },
+        {
+          "x": 587066.4204246021,
+          "y": 4141599.9424843197,
+          "z": 0.0
+        }
+      ],
+      [
+        {
+          "x": 587059.7319700024,
+          "y": 4141575.0595234046,
+          "z": 0.0
+        },
+        {
+          "x": 587059.4357027288,
+          "y": 4141575.0123460526,
+          "z": 0.0
+        },
+        {
+          "x": 587059.5143316486,
+          "y": 4141574.518567263,
+          "z": 0.0
+        },
+        {
+          "x": 587059.8105989222,
+          "y": 4141574.565744615,
+          "z": 0.0
+        }
+      ]
+    ]
+  ]
+}
+
+}
+
+}
+state "AutowareScenario" as state_AutowareScenario {
+  state "Scenario" as state_Scenario {
+  json Scenario  {
+  "Scenario": {
+    "ScenarioModifiers": {
+      "ScenarioModifier": [
+        {
+          "name": "__tier4_modifier_egoSpd",
+          "list": [
+            1.389,
+            2.778,
+            5.556
+          ]
+        }
+      ]
+    },
+    "OpenSCENARIO": {
+      "FileHeader": {
+        "revMajor": 1,
+        "revMinor": 1,
+        "date": "2023-11-13T11:17:34.451Z",
+        "description": "",
+        "author": "Berkay Karaman (last modified by: Berkay Karaman)"
+      },
+      "ParameterDeclarations": {
+        "ParameterDeclaration": [
+          {
+            "name": "egoSpd",
+            "parameterType": "double",
+            "value": "__tier4_modifier_egoSpd"
+          },
+          {
+            "name": "__ego_center_z__",
+            "parameterType": "double",
+            "value": "0"
+          }
+        ]
+      },
+      "CatalogLocations": {
+        "CatalogLocation": []
+      },
+      "RoadNetwork": {
+        "LogicFile": {
+          "filepath": "awf_cicd_virtual_E_dev.osm"
+        },
+        "SceneGraphFile": {
+          "filepath": "awf_cicd_virtual_E_dev.pcd"
+        },
+        "TrafficSignals": {
+          "TrafficSignalController": [
+            {
+              "name": "StraghtSignal",
+              "Phase": [
+                {
+                  "name": "RED",
+                  "duration": "INF",
+                  "TrafficSignalState": [
+                    {
+                      "trafficSignalId": "12515",
+                      "state": "red solidOn circle"
+                    },
+                    {
+                      "trafficSignalId": "12526",
+                      "state": "green solidOn circle"
+                    }
+                  ]
+                },
+                {
+                  "name": "GREEN",
+                  "duration": "INF",
+                  "TrafficSignalState": [
+                    {
+                      "trafficSignalId": "12515",
+                      "state": "green solidOn circle"
+                    },
+                    {
+                      "trafficSignalId": "12526",
+                      "state": "red solidOn circle"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "Entities": "<<Original Key Path: Scenario.OpenSCENARIO.Entities>>",
+      "Storyboard": "<<Original Key Path: Scenario.OpenSCENARIO.Storyboard>>"
+    }
+  }
+}
+
+}
+state "Scenario.OpenSCENARIO.Entities" as state_Scenario_OpenSCENARIO_Entities ##[bold]56C1FF {
+  json Entities #56C1FF {
+  "Entities": [
+    {
+      "ScenarioObject": [
+        {
+          "name": "ego",
+          "Vehicle": {
+            "name": "",
+            "vehicleCategory": "car",
+            "BoundingBox": {
+              "Center": {
+                "x": 1.345,
+                "y": 0,
+                "z": 1.25
+              },
+              "Dimensions": {
+                "length": 4.89,
+                "width": 2.131,
+                "height": 2.5
+              }
+            },
+            "Performance": {
+              "maxSpeed": 50,
+              "maxAcceleration": "INF",
+              "maxDeceleration": "INF"
+            },
+            "Axles": {
+              "FrontAxle": {
+                "maxSteering": 0.5236,
+                "wheelDiameter": 0.766,
+                "trackWidth": 1.64,
+                "positionX": 1.445,
+                "positionZ": 0.383
+              },
+              "RearAxle": {
+                "maxSteering": 0.5236,
+                "wheelDiameter": 0.766,
+                "trackWidth": 1.64,
+                "positionX": 0,
+                "positionZ": 0.383
+              }
+            },
+            "Properties": {
+              "Property": []
+            }
+          },
+          "ObjectController": {
+            "Controller": {
+              "name": "",
+              "Properties": {
+                "Property": [
+                  {
+                    "name": "isEgo",
+                    "value": "true"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "Pedestrian1",
+          "Pedestrian": {
+            "name": "Pedestrian",
+            "mass": 60,
+            "model": "",
+            "pedestrianCategory": "pedestrian",
+            "BoundingBox": {
+              "Center": {
+                "x": 0,
+                "y": 0,
+                "z": 1
+              },
+              "Dimensions": {
+                "length": 0.8,
+                "width": 0.8,
+                "height": 2
+              }
+            },
+            "Properties": {
+              "Property": []
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+
+}
+state "Scenario.OpenSCENARIO.Storyboard" as state_Scenario_OpenSCENARIO_Storyboard {
+  json Storyboard  {
+  "Storyboard": [
+    {
+      "Init": {
+        "Actions": {
+          "GlobalAction": [
+            {
+              "InfrastructureAction": {
+                "TrafficSignalAction": {
+                  "TrafficSignalControllerAction": {
+                    "trafficSignalControllerRef": "StraghtSignal",
+                    "phase": "GREEN"
+                  }
+                }
+              }
+            }
+          ],
+          "Private": "<<Original Key Path: Scenario.OpenSCENARIO.Storyboard.Init.Actions.Private>>"
+        }
+      },
+      "Story": "<<Original Key Path: Scenario.OpenSCENARIO.Storyboard.Story>>",
+      "StopTrigger": {
+        "ConditionGroup": []
+      }
+    }
+  ]
+}
+
+}
+state "Scenario.OpenSCENARIO.Storyboard.Story" as state_Scenario_OpenSCENARIO_Storyboard_Story {
+  json Story  {
+  "Story": [
+    [
+      {
+        "name": "",
+        "Act": "<<Original Key Path: Scenario.OpenSCENARIO.Storyboard.Story.Act 0>>"
+      }
+    ]
+  ]
+}
+
+}
+state "Scenario.OpenSCENARIO.Storyboard.Story.Act" as state_Scenario_OpenSCENARIO_Storyboard_Story_Act ##[bold]56C1FF {
+  json Act #56C1FF {
+  "Act": [
+    [
+      [
+        {
+          "name": "act_signal_change",
+          "ManeuverGroup": [
+            {
+              "maximumExecutionCount": 1,
+              "name": "act_signal_change",
+              "Actors": {
+                "selectTriggeringEntities": false,
+                "EntityRef": [
+                  {
+                    "entityRef": "ego"
+                  }
+                ]
+              },
+              "Maneuver": [
+                {
+                  "name": "",
+                  "Event": [
+                    {
+                      "name": "signal_change",
+                      "priority": "parallel",
+                      "Action": [
+                        {
+                          "name": "",
+                          "GlobalAction": {
+                            "InfrastructureAction": {
+                              "TrafficSignalAction": {
+                                "TrafficSignalControllerAction": {
+                                  "trafficSignalControllerRef": "StraghtSignal",
+                                  "phase": "GREEN"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "StartTrigger": {
+                        "ConditionGroup": [
+                          {
+                            "Condition": [
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByEntityCondition": {
+                                  "TriggeringEntities": {
+                                    "triggeringEntitiesRule": "any",
+                                    "EntityRef": [
+                                      {
+                                        "entityRef": "ego"
+                                      }
+                                    ]
+                                  },
+                                  "EntityCondition": {
+                                    "SpeedCondition": {
+                                      "rule": "greaterThan",
+                                      "value": 0.0001
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "StartTrigger": {
+            "ConditionGroup": [
+              {
+                "Condition": [
+                  {
+                    "name": "",
+                    "delay": 0,
+                    "conditionEdge": "none",
+                    "ByValueCondition": {
+                      "SimulationTimeCondition": {
+                        "value": 0,
+                        "rule": "greaterThan"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "act_ped_start",
+          "ManeuverGroup": [
+            {
+              "maximumExecutionCount": 1,
+              "name": "act_ped_start",
+              "Actors": {
+                "selectTriggeringEntities": false,
+                "EntityRef": [
+                  {
+                    "entityRef": "Pedestrian1"
+                  }
+                ]
+              },
+              "Maneuver": [
+                {
+                  "name": "",
+                  "Event": [
+                    {
+                      "name": "ped_start",
+                      "priority": "parallel",
+                      "Action": [
+                        {
+                          "name": "",
+                          "UserDefinedAction": {
+                            "CustomCommandAction": {
+                              "type": "WalkStraightAction"
+                            }
+                          }
+                        },
+                        {
+                          "name": "",
+                          "PrivateAction": {
+                            "LongitudinalAction": {
+                              "SpeedAction": {
+                                "SpeedActionDynamics": {
+                                  "dynamicsDimension": "time",
+                                  "value": 0,
+                                  "dynamicsShape": "step"
+                                },
+                                "SpeedActionTarget": {
+                                  "AbsoluteTargetSpeed": {
+                                    "value": 0.4167
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "StartTrigger": {
+                        "ConditionGroup": [
+                          {
+                            "Condition": [
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByValueCondition": {
+                                  "StoryboardElementStateCondition": {
+                                    "state": "completeState",
+                                    "storyboardElementType": "act",
+                                    "storyboardElementRef": "act_signal_change"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "StartTrigger": {
+            "ConditionGroup": [
+              {
+                "Condition": [
+                  {
+                    "name": "",
+                    "delay": 0,
+                    "conditionEdge": "none",
+                    "ByValueCondition": {
+                      "SimulationTimeCondition": {
+                        "value": 0,
+                        "rule": "greaterThan"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "act_ped_stop",
+          "ManeuverGroup": [
+            {
+              "maximumExecutionCount": 1,
+              "name": "act_ped_stop",
+              "Actors": {
+                "selectTriggeringEntities": false,
+                "EntityRef": [
+                  {
+                    "entityRef": "Pedestrian1"
+                  }
+                ]
+              },
+              "Maneuver": [
+                {
+                  "name": "",
+                  "Event": [
+                    {
+                      "name": "ped_stop",
+                      "priority": "parallel",
+                      "Action": [
+                        {
+                          "name": "",
+                          "UserDefinedAction": {
+                            "CustomCommandAction": {
+                              "type": "WalkStraightAction"
+                            }
+                          }
+                        },
+                        {
+                          "name": "",
+                          "PrivateAction": {
+                            "LongitudinalAction": {
+                              "SpeedAction": {
+                                "SpeedActionDynamics": {
+                                  "dynamicsDimension": "time",
+                                  "value": 0,
+                                  "dynamicsShape": "step"
+                                },
+                                "SpeedActionTarget": {
+                                  "AbsoluteTargetSpeed": {
+                                    "value": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "StartTrigger": {
+                        "ConditionGroup": [
+                          {
+                            "Condition": [
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByEntityCondition": {
+                                  "TriggeringEntities": {
+                                    "triggeringEntitiesRule": "any",
+                                    "EntityRef": [
+                                      {
+                                        "entityRef": "Pedestrian1"
+                                      }
+                                    ]
+                                  },
+                                  "EntityCondition": {
+                                    "ReachPositionCondition": {
+                                      "Position": {
+                                        "LanePosition": {
+                                          "roadId": "",
+                                          "laneId": "12163",
+                                          "s": 490,
+                                          "offset": 0.1049,
+                                          "Orientation": {
+                                            "type": "relative",
+                                            "h": 0,
+                                            "p": 0,
+                                            "r": 0
+                                          }
+                                        }
+                                      },
+                                      "tolerance": 0.5
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "StartTrigger": {
+            "ConditionGroup": [
+              {
+                "Condition": [
+                  {
+                    "name": "",
+                    "delay": 0,
+                    "conditionEdge": "none",
+                    "ByValueCondition": {
+                      "StoryboardElementStateCondition": {
+                        "state": "completeState",
+                        "storyboardElementType": "act",
+                        "storyboardElementRef": "act_ped_start"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "act_check_ego_stop_obstacle",
+          "ManeuverGroup": [
+            {
+              "maximumExecutionCount": 1,
+              "name": "act_check_ego_stop_obstacle",
+              "Actors": {
+                "selectTriggeringEntities": false,
+                "EntityRef": [
+                  {
+                    "entityRef": "Pedestrian1"
+                  }
+                ]
+              },
+              "Maneuver": [
+                {
+                  "name": "",
+                  "Event": [
+                    {
+                      "name": "check_ego_stop_obstacle",
+                      "priority": "parallel",
+                      "Action": [
+                        {
+                          "name": "",
+                          "UserDefinedAction": {
+                            "CustomCommandAction": {
+                              "type": "WalkStraightAction"
+                            }
+                          }
+                        },
+                        {
+                          "name": "",
+                          "PrivateAction": {
+                            "LongitudinalAction": {
+                              "SpeedAction": {
+                                "SpeedActionDynamics": {
+                                  "dynamicsDimension": "time",
+                                  "value": 0,
+                                  "dynamicsShape": "step"
+                                },
+                                "SpeedActionTarget": {
+                                  "AbsoluteTargetSpeed": {
+                                    "value": 0.5556
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "StartTrigger": {
+                        "ConditionGroup": [
+                          {
+                            "Condition": [
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByEntityCondition": {
+                                  "TriggeringEntities": {
+                                    "triggeringEntitiesRule": "any",
+                                    "EntityRef": [
+                                      {
+                                        "entityRef": "ego"
+                                      }
+                                    ]
+                                  },
+                                  "EntityCondition": {
+                                    "SpeedCondition": {
+                                      "rule": "lessThan",
+                                      "value": 0.0001
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByEntityCondition": {
+                                  "TriggeringEntities": {
+                                    "triggeringEntitiesRule": "any",
+                                    "EntityRef": [
+                                      {
+                                        "entityRef": "ego"
+                                      }
+                                    ]
+                                  },
+                                  "EntityCondition": {
+                                    "DistanceCondition": {
+                                      "Position": {
+                                        "LanePosition": {
+                                          "roadId": "",
+                                          "laneId": "12163",
+                                          "s": 490,
+                                          "offset": 0.1049,
+                                          "Orientation": {
+                                            "type": "relative",
+                                            "h": 0,
+                                            "p": 0,
+                                            "r": 0
+                                          }
+                                        }
+                                      },
+                                      "value": 5,
+                                      "freespace": false,
+                                      "relativeDistanceType": "longitudinal",
+                                      "coordinateSystem": "lane",
+                                      "rule": "greaterThan"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "StartTrigger": {
+            "ConditionGroup": [
+              {
+                "Condition": [
+                  {
+                    "name": "",
+                    "delay": 0,
+                    "conditionEdge": "none",
+                    "ByValueCondition": {
+                      "StoryboardElementStateCondition": {
+                        "state": "completeState",
+                        "storyboardElementType": "act",
+                        "storyboardElementRef": "act_ped_start"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "act_check_ego_stopkeep",
+          "ManeuverGroup": [
+            {
+              "maximumExecutionCount": 1,
+              "name": "act_check_ego_stopkeep",
+              "Actors": {
+                "selectTriggeringEntities": false,
+                "EntityRef": [
+                  {
+                    "entityRef": "ego"
+                  }
+                ]
+              },
+              "Maneuver": [
+                {
+                  "name": "",
+                  "Event": [
+                    {
+                      "name": "check_ego_stopkeep",
+                      "priority": "parallel",
+                      "Action": [
+                        {
+                          "name": "",
+                          "UserDefinedAction": {
+                            "CustomCommandAction": {
+                              "type": ":"
+                            }
+                          }
+                        }
+                      ],
+                      "StartTrigger": {
+                        "ConditionGroup": [
+                          {
+                            "Condition": [
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByEntityCondition": {
+                                  "TriggeringEntities": {
+                                    "triggeringEntitiesRule": "any",
+                                    "EntityRef": [
+                                      {
+                                        "entityRef": "ego"
+                                      }
+                                    ]
+                                  },
+                                  "EntityCondition": {
+                                    "SpeedCondition": {
+                                      "rule": "lessThan",
+                                      "value": 0.0001
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByEntityCondition": {
+                                  "TriggeringEntities": {
+                                    "triggeringEntitiesRule": "any",
+                                    "EntityRef": [
+                                      {
+                                        "entityRef": "Pedestrian1"
+                                      }
+                                    ]
+                                  },
+                                  "EntityCondition": {
+                                    "DistanceCondition": {
+                                      "Position": {
+                                        "LanePosition": {
+                                          "roadId": "",
+                                          "laneId": "12163",
+                                          "s": 490,
+                                          "offset": -1.2228,
+                                          "Orientation": {
+                                            "type": "relative",
+                                            "h": 0,
+                                            "p": 0,
+                                            "r": 0
+                                          }
+                                        }
+                                      },
+                                      "value": 0.3,
+                                      "freespace": false,
+                                      "relativeDistanceType": "longitudinal",
+                                      "coordinateSystem": "entity",
+                                      "rule": "lessThan"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "StartTrigger": {
+            "ConditionGroup": [
+              {
+                "Condition": [
+                  {
+                    "name": "",
+                    "delay": 0,
+                    "conditionEdge": "none",
+                    "ByValueCondition": {
+                      "StoryboardElementStateCondition": {
+                        "state": "completeState",
+                        "storyboardElementType": "act",
+                        "storyboardElementRef": "act_check_ego_stop_obstacle"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "act_check_ego_spd",
+          "ManeuverGroup": [
+            {
+              "maximumExecutionCount": 1,
+              "name": "act_check_ego_spd",
+              "Actors": {
+                "selectTriggeringEntities": false,
+                "EntityRef": [
+                  {
+                    "entityRef": "ego"
+                  }
+                ]
+              },
+              "Maneuver": [
+                {
+                  "name": "",
+                  "Event": [
+                    {
+                      "name": "check_ego_spd",
+                      "priority": "parallel",
+                      "Action": [
+                        {
+                          "name": "",
+                          "UserDefinedAction": {
+                            "CustomCommandAction": {
+                              "type": ":"
+                            }
+                          }
+                        }
+                      ],
+                      "StartTrigger": {
+                        "ConditionGroup": [
+                          {
+                            "Condition": [
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByEntityCondition": {
+                                  "TriggeringEntities": {
+                                    "triggeringEntitiesRule": "any",
+                                    "EntityRef": [
+                                      {
+                                        "entityRef": "ego"
+                                      }
+                                    ]
+                                  },
+                                  "EntityCondition": {
+                                    "SpeedCondition": {
+                                      "rule": "greaterThan",
+                                      "value": 0.0001
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByValueCondition": {
+                                  "StoryboardElementStateCondition": {
+                                    "state": "runningState",
+                                    "storyboardElementType": "act",
+                                    "storyboardElementRef": "act_check_ego_stopkeep"
+                                  }
+                                }
+                              },
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByEntityCondition": {
+                                  "TriggeringEntities": {
+                                    "triggeringEntitiesRule": "any",
+                                    "EntityRef": [
+                                      {
+                                        "entityRef": "Pedestrian1"
+                                      }
+                                    ]
+                                  },
+                                  "EntityCondition": {
+                                    "DistanceCondition": {
+                                      "Position": {
+                                        "LanePosition": {
+                                          "roadId": "",
+                                          "laneId": "12163",
+                                          "s": 490,
+                                          "offset": -1.2228,
+                                          "Orientation": {
+                                            "type": "relative",
+                                            "h": 0,
+                                            "p": 0,
+                                            "r": 0
+                                          }
+                                        }
+                                      },
+                                      "value": 0.3,
+                                      "freespace": false,
+                                      "relativeDistanceType": "longitudinal",
+                                      "coordinateSystem": "entity",
+                                      "rule": "greaterThan"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "StartTrigger": {
+            "ConditionGroup": [
+              {
+                "Condition": [
+                  {
+                    "name": "",
+                    "delay": 0,
+                    "conditionEdge": "none",
+                    "ByValueCondition": {
+                      "StoryboardElementStateCondition": {
+                        "state": "completeState",
+                        "storyboardElementType": "act",
+                        "storyboardElementRef": "act_check_ego_stop_obstacle"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "_EndCondition",
+          "ManeuverGroup": [
+            {
+              "maximumExecutionCount": 1,
+              "name": "",
+              "Actors": {
+                "selectTriggeringEntities": false,
+                "EntityRef": [
+                  {
+                    "entityRef": "ego"
+                  }
+                ]
+              },
+              "Maneuver": [
+                {
+                  "name": "",
+                  "Event": [
+                    {
+                      "name": "",
+                      "priority": "parallel",
+                      "StartTrigger": {
+                        "ConditionGroup": [
+                          {
+                            "Condition": [
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByEntityCondition": {
+                                  "TriggeringEntities": {
+                                    "triggeringEntitiesRule": "any",
+                                    "EntityRef": [
+                                      {
+                                        "entityRef": "ego"
+                                      }
+                                    ]
+                                  },
+                                  "EntityCondition": {
+                                    "ReachPositionCondition": {
+                                      "Position": {
+                                        "LanePosition": {
+                                          "roadId": "",
+                                          "laneId": "12163",
+                                          "s": 525,
+                                          "offset": 0,
+                                          "Orientation": {
+                                            "type": "relative",
+                                            "h": 0,
+                                            "p": 0,
+                                            "r": 0
+                                          }
+                                        }
+                                      },
+                                      "tolerance": 1
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByValueCondition": {
+                                  "StoryboardElementStateCondition": {
+                                    "state": "completeState",
+                                    "storyboardElementType": "act",
+                                    "storyboardElementRef": "act_check_ego_stop_obstacle"
+                                  }
+                                }
+                              },
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByValueCondition": {
+                                  "StoryboardElementStateCondition": {
+                                    "state": "completeState",
+                                    "storyboardElementType": "act",
+                                    "storyboardElementRef": "act_check_ego_stopkeep"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "Action": [
+                        {
+                          "name": "",
+                          "UserDefinedAction": {
+                            "CustomCommandAction": {
+                              "type": "exitSuccess"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "",
+                      "priority": "parallel",
+                      "StartTrigger": {
+                        "ConditionGroup": [
+                          {
+                            "Condition": [
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByValueCondition": {
+                                  "SimulationTimeCondition": {
+                                    "value": 180,
+                                    "rule": "greaterThan"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "Condition": [
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByEntityCondition": {
+                                  "TriggeringEntities": {
+                                    "triggeringEntitiesRule": "any",
+                                    "EntityRef": [
+                                      {
+                                        "entityRef": "ego"
+                                      }
+                                    ]
+                                  },
+                                  "EntityCondition": {
+                                    "CollisionCondition": {
+                                      "EntityRef": {
+                                        "entityRef": "Pedestrian1"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "Condition": [
+                              {
+                                "name": "",
+                                "delay": 0,
+                                "conditionEdge": "none",
+                                "ByValueCondition": {
+                                  "StoryboardElementStateCondition": {
+                                    "state": "completeState",
+                                    "storyboardElementType": "act",
+                                    "storyboardElementRef": "act_check_ego_spd"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "Action": [
+                        {
+                          "name": "",
+                          "UserDefinedAction": {
+                            "CustomCommandAction": {
+                              "type": "exitFailure"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "StartTrigger": {
+            "ConditionGroup": [
+              {
+                "Condition": [
+                  {
+                    "name": "",
+                    "delay": 0,
+                    "conditionEdge": "none",
+                    "ByValueCondition": {
+                      "SimulationTimeCondition": {
+                        "value": 0,
+                        "rule": "greaterThan"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    ]
+  ]
+}
+
+}
+state "Scenario.OpenSCENARIO.Storyboard.Init.Actions.Private" as state_Scenario_OpenSCENARIO_Storyboard_Init_Actions_Private ##[bold]1DB100 {
+  json Private #1DB100 {
+  "Private": [
+    [
+      {
+        "entityRef": "ego",
+        "PrivateAction": [
+          {
+            "TeleportAction": {
+              "Position": {
+                "LanePosition": {
+                  "roadId": "",
+                  "laneId": "12163",
+                  "s": 440,
+                  "offset": 0,
+                  "Orientation": {
+                    "type": "relative",
+                    "h": 0,
+                    "p": 0,
+                    "r": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "RoutingAction": {
+              "AcquirePositionAction": {
+                "Position": {
+                  "LanePosition": {
+                    "roadId": "",
+                    "laneId": "12163",
+                    "s": 525,
+                    "offset": 0,
+                    "Orientation": {
+                      "type": "relative",
+                      "h": 0,
+                      "p": 0,
+                      "r": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "LongitudinalAction": {
+              "SpeedAction": {
+                "SpeedActionDynamics": {
+                  "dynamicsDimension": "time",
+                  "value": 0,
+                  "dynamicsShape": "step"
+                },
+                "SpeedActionTarget": {
+                  "AbsoluteTargetSpeed": {
+                    "value": "$egoSpd"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "ControllerAction": {
+              "AssignControllerAction": {
+                "Controller": {
+                  "name": "",
+                  "Properties": {
+                    "Property": [
+                      {
+                        "name": "maxSpeed",
+                        "value": "$egoSpd"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "entityRef": "Pedestrian1",
+        "PrivateAction": [
+          {
+            "TeleportAction": {
+              "Position": {
+                "LanePosition": {
+                  "roadId": "",
+                  "laneId": "12163",
+                  "s": 490,
+                  "offset": 3,
+                  "Orientation": {
+                    "type": "relative",
+                    "h": -1.5708,
+                    "p": 0,
+                    "r": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "LongitudinalAction": {
+              "SpeedAction": {
+                "SpeedActionDynamics": {
+                  "dynamicsDimension": "time",
+                  "value": 0,
+                  "dynamicsShape": "step"
+                },
+                "SpeedActionTarget": {
+                  "AbsoluteTargetSpeed": {
+                    "value": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "ControllerAction": {
+              "AssignControllerAction": {
+                "Controller": {
+                  "name": "",
+                  "Properties": {
+                    "Property": [
+                      {
+                        "name": "maxSpeed",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  ]
+}
+
+}
+
+}
+state_ApolloScenario -[bold,#000000]-> state_ApolloScenario_ROUTING_REQUEST_ROUTING_REQUEST
+note on link
+  ApolloScenario contains ApolloScenario.ROUTING_REQUEST.ROUTING_REQUEST
+end note
+
+state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle -[bold,#000000]-> state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle_velocity
+note on link
+  ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle contains ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.velocity
+end note
+
+state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle -[bold,#000000]-> state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle_position
+note on link
+  ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle contains ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.position
+end note
+
+state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle -[bold,#000000]-> state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle_polygon_point
+note on link
+  ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle contains ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.polygon_point
+end note
+
+state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle -[bold,#000000]-> state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle_acceleration
+note on link
+  ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle contains ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle.acceleration
+end note
+
+state_ApolloScenario -[bold,#000000]-> state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle
+note on link
+  ApolloScenario contains ApolloScenario.PERCEPTION_OBSTACLES.PERCEPTION_OBSTACLES.perception_obstacle
+end note
+
+state_Scenario_OpenSCENARIO_Storyboard_Story -[bold,#000000]-> state_Scenario_OpenSCENARIO_Storyboard_Story_Act
+note on link
+  Scenario.OpenSCENARIO.Storyboard.Story contains Scenario.OpenSCENARIO.Storyboard.Story.Act
+end note
+
+state_Scenario_OpenSCENARIO_Storyboard -[bold,#000000]-> state_Scenario_OpenSCENARIO_Storyboard_Story
+note on link
+  Scenario.OpenSCENARIO.Storyboard contains Scenario.OpenSCENARIO.Storyboard.Story
+end note
+
+state_Scenario_OpenSCENARIO_Storyboard -[bold,#000000]-> state_Scenario_OpenSCENARIO_Storyboard_Init_Actions_Private
+note on link
+  Scenario.OpenSCENARIO.Storyboard contains Scenario.OpenSCENARIO.Storyboard.Init.Actions.Private
+end note
+
+state_Scenario -[bold,#000000]-> state_Scenario_OpenSCENARIO_Storyboard
+note on link
+  Scenario contains Scenario.OpenSCENARIO.Storyboard
+end note
+
+state_Scenario -[bold,#000000]-> state_Scenario_OpenSCENARIO_Entities
+note on link
+  Scenario contains Scenario.OpenSCENARIO.Entities
+end note
+
+state_ApolloScenario -[bold,#FF0000]-> state_AutowareScenario
+state_ApolloScenario_ROUTING_REQUEST_ROUTING_REQUEST -[bold,#1DB100]-> state_Scenario_OpenSCENARIO_Entities
+state_ApolloScenario_ROUTING_REQUEST_ROUTING_REQUEST -[bold,#1DB100]-> state_Scenario_OpenSCENARIO_Storyboard_Init_Actions_Private
+state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle -[bold,#56C1FF]-> state_Scenario_OpenSCENARIO_Entities
+state_ApolloScenario_PERCEPTION_OBSTACLES_PERCEPTION_OBSTACLES_perception_obstacle -[bold,#56C1FF]-> state_Scenario_OpenSCENARIO_Storyboard_Story_Act
+
+@enduml

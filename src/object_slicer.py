@@ -64,7 +64,7 @@ class ObjectSlicer:
             for key, value in chunk.items():
                 new_key = key.split('.')[-1]
                 group_dict[new_key].append(value)
-                
+
         chunks = []
         for key, value in group_dict.items():
             chunks.append({key: value})
@@ -108,11 +108,11 @@ class ObjectSlicer:
         return res_dict            
 
     def update_chunks_by_keypath(self, data, keypath, original_keypath):
-
         keys = keypath.split('.')
 
         if len(keys) > 1:
             new_key = keys[1:]
+            
             if isinstance(data, list):
                 for element in data:
                     self.update_chunks_by_keypath(data=element[keys[0]], 
@@ -124,7 +124,6 @@ class ObjectSlicer:
                                               original_keypath=original_keypath)
         elif len(keys) == 1:
             target_key = keys[0]
-            
             if isinstance(data, list):
                 chunk_list = []
                 for i, element in enumerate(data):
